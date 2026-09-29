@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Showcase Interactivo — Laboratorio de Componentes Web</title>
+  <meta name="description" content="Laboratorio de componentes web interactivos de alto rendimiento. E-commerce con carrito, dashboard con gráficos, reservas de turnos, galerías, formularios, Kanban, API REST y mapas." />
+  <meta name="keywords" content="desarrollo web, frontend, javascript, portfolio, componentes interactivos, ecommerce, dashboard, turnos, ui, ux" />
+  <meta name="author" content="Showcase Labs" />
+  <meta name="theme-color" content="#2563eb" />
+
+  <!-- Open Graph / WhatsApp / Facebook / LinkedIn -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Showcase Labs" />
+  <meta property="og:title" content="Showcase Interactivo — Laboratorio de Componentes Web" />
+  <meta property="og:description" content="Explorá 8 mini-aplicaciones interactivas: E-commerce con carrito, Dashboard con gráficos, Reservas, Galerías, Formularios avanzados, Kanban, API REST y Mapa interactivo." />
+  <meta property="og:image" content="/og-preview.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:image:alt" content="Showcase de Componentes Web Interactivos" />
+  <meta property="og:locale" content="es_AR" />
+
+  <!-- Twitter / X Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Showcase Interactivo — Laboratorio de Componentes Web" />
+  <meta name="twitter:description" content="Explorá 8 mini-aplicaciones interactivas construidas con JavaScript moderno y diseño responsive de alta calidad." />
+  <meta name="twitter:image" content="/og-preview.jpg" />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="light-mode">
+
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-progress" id="scroll-progress"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <i class="fa-solid fa-layer-group"></i>
+        <span>Showcase<span class="logo-dot">.</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="#hero" class="nav-link">Inicio</a>
+        <a href="#components" class="nav-link">Componentes</a>
+        <a href="#tech-stack" class="nav-link">Tecnologías</a>
+        <a href="#contact-cta" class="nav-link nav-cta-link">Cotizar</a>
+        <button id="sound-toggle" class="icon-btn sound-btn" aria-label="Activar o desactivar sonidos" title="Sonidos: Desactivados">
+          <i class="fa-solid fa-volume-xmark"></i>
+        </button>
+        <button id="theme-toggle" class="icon-btn theme-btn" aria-label="Cambiar tema">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <button id="mobile-menu-toggle" class="icon-btn mobile-menu-btn" aria-label="Abrir menú de navegación">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header id="hero" class="hero-section">
+    <!-- Floating Glass Badges -->
+    <div class="hero-floating-badges" aria-hidden="true">
+      <div class="floating-chip chip-vanilla"><i class="fa-brands fa-js"></i> Vanilla JS 100%</div>
+      <div class="floating-chip chip-speed"><i class="fa-solid fa-bolt"></i> Ultra Rápido</div>
+      <div class="floating-chip chip-mobile"><i class="fa-solid fa-mobile-screen"></i> Multi-dispositivo</div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge animate-up">
+        <span class="pulse-dot"></span>
+        <i class="fa-solid fa-flask"></i> Laboratorio de Componentes Interactivos
+      </div>
+      <h1 class="animate-up delay-1">
+        Cada componente es<br>
+        <span class="text-gradient shimmer-text">una mini aplicación.</span>
+      </h1>
+      <p class="animate-up delay-2">
+        Explora demos funcionales de E-commerce, Dashboards, Reservas, Formularios y más.
+        Hecho para demostrar código real, limpio, interactivo y escalable.
+      </p>
+      <div class="hero-buttons animate-up delay-3">
+        <a href="#components" class="btn btn-primary btn-shine">
+          <i class="fa-solid fa-rocket"></i> Explorar Componentes
+        </a>
+        <a href="https://github.com" target="_blank" class="btn btn-secondary btn-glow">
+          <i class="fa-brands fa-github"></i> Ver en GitHub
+        </a>
+      </div>
+      <div class="hero-stats animate-up delay-4">
+        <div class="stat"><span class="stat-num" data-target="8">0</span><small>Componentes</small></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num" data-target="100" data-suffix="%">0</span><small>Vanilla JS</small></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num" data-target="3">0</span><small>Vistas por componente</small></div>
+      </div>
+    </div>
+    <div class="hero-background">
+      <div class="blob shape-1"></div>
+      <div class="blob shape-2"></div>
+      <div class="blob shape-3"></div>
+      <div class="hero-grid-pattern"></div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-line"></div>
+    </div>
+  </header>
+
+  <!-- Empresas que cubre -->
+  <section class="covered-section">
+    <div class="container">
+      <p class="covered-label">Componentes aplicables a</p>
+      <div class="covered-grid">
+        <div class="covered-item"><i class="fa-solid fa-cart-shopping"></i><span>E-commerce</span></div>
+        <div class="covered-item"><i class="fa-solid fa-wrench"></i><span>Talleres</span></div>
+        <div class="covered-item"><i class="fa-solid fa-utensils"></i><span>Restaurantes</span></div>
+        <div class="covered-item"><i class="fa-solid fa-bed"></i><span>Hoteles</span></div>
+        <div class="covered-item"><i class="fa-solid fa-building"></i><span>Empresas</span></div>
+        <div class="covered-item"><i class="fa-solid fa-stethoscope"></i><span>Clínicas</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Showcase Container -->
+  <main id="components" class="showcase-container">
+
+    <!-- Controls Header -->
+    <div class="showcase-controls">
+      <div class="controls-left">
+        <h2>Catálogo de Componentes</h2>
+        <p>Cada sección tiene: <strong>Demo</strong>, <strong>Código</strong> e <strong>Información</strong>.</p>
+      </div>
+      <div class="controls-right">
+        <span class="simulator-label"><i class="fa-solid fa-display"></i> Vista previa:</span>
+        <div class="device-toggles">
+          <button class="device-btn active" data-device="desktop" title="Desktop (100%)">
+            <i class="fa-solid fa-desktop"></i>
+          </button>
+          <button class="device-btn" data-device="notebook" title="Notebook (1024px)">
+            <i class="fa-solid fa-laptop"></i>
+          </button>
+          <button class="device-btn" data-device="tablet" title="Tablet (768px)">
+            <i class="fa-solid fa-tablet-screen-button"></i>
+          </button>
+          <button class="device-btn" data-device="mobile" title="Mobile (390px)">
+            <i class="fa-solid fa-mobile-screen"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Components Viewport -->
+    <div id="showcase-viewport" class="device-desktop">
+      <!-- Componentes inyectados dinámicamente por main.js -->
+    </div>
+
+  </main>
+
+  <!-- Tech Stack Section -->
+  <section id="tech-stack" class="tech-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Stack Tecnológico</h2>
+        <p>Todo construido sin frameworks. Puro dominio del lenguaje.</p>
+      </div>
+      <div class="tech-grid">
+        <div class="tech-item">
+          <div class="tech-icon html"><i class="fa-brands fa-html5"></i></div>
+          <h4>HTML5</h4>
+          <p>Semántico, accesible y bien estructurado.</p>
+          <div class="tech-bar"><div class="tech-progress" style="width: 95%"></div></div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon css"><i class="fa-brands fa-css3-alt"></i></div>
+          <h4>CSS3</h4>
+          <p>Variables, Grid, Flexbox y animaciones puras.</p>
+          <div class="tech-bar"><div class="tech-progress" style="width: 90%"></div></div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon js"><i class="fa-brands fa-js"></i></div>
+          <h4>JavaScript</h4>
+          <p>ES Modules, DOM manipulation, State management.</p>
+          <div class="tech-bar"><div class="tech-progress" style="width: 92%"></div></div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon responsive"><i class="fa-solid fa-mobile-screen-button"></i></div>
+          <h4>Responsive</h4>
+          <p>Diseño adaptable a todos los dispositivos.</p>
+          <div class="tech-bar"><div class="tech-progress" style="width: 95%"></div></div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon animation"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+          <h4>Animaciones</h4>
+          <p>CSS Keyframes, Transitions y efectos interactivos.</p>
+          <div class="tech-bar"><div class="tech-progress" style="width: 85%"></div></div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon storage"><i class="fa-solid fa-database"></i></div>
+          <h4>LocalStorage</h4>
+          <p>Persistencia de datos sin servidor ni base de datos.</p>
+          <div class="tech-bar"><div class="tech-progress" style="width: 88%"></div></div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon api"><i class="fa-solid fa-plug"></i></div>
+          <h4>Fetch API</h4>
+          <p>Consumo de datos externos (simulados con JSON).</p>
+          <div class="tech-bar"><div class="tech-progress" style="width: 80%"></div></div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon vite"><i class="fa-solid fa-bolt"></i></div>
+          <h4>Vite</h4>
+          <p>Entorno de desarrollo moderno con módulos ES nativos.</p>
+          <div class="tech-bar"><div class="tech-progress" style="width: 78%"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA / Business Conversion Section -->
+  <section id="contact-cta" class="cta-section">
+    <div class="container">
+      <div class="cta-card">
+        <div class="cta-background-glow"></div>
+        <div class="cta-content">
+          <div class="cta-badge">
+            <span class="pulse-dot"></span>
+            <i class="fa-solid fa-wand-magic-sparkles"></i> ¿Tenés un proyecto en mente?
+          </div>
+          <h2>
+            Llevá la experiencia digital de tu negocio<br>
+            <span class="text-gradient shimmer-text">al siguiente nivel.</span>
+          </h2>
+          <p class="cta-description">
+            Desarrollamos soluciones web interactivas, ultra rápidas y personalizadas a medida de tu empresa. Sin plantillas pesadas, 100% optimizadas para convertir visitantes en clientes reales.
+          </p>
+
+          <!-- Value Pillars -->
+          <div class="cta-pillars">
+            <div class="pillar-item">
+              <div class="pillar-icon"><i class="fa-solid fa-gauge-high"></i></div>
+              <div class="pillar-info">
+                <h4>Velocidad Extrema</h4>
+                <p>Carga instantánea en cualquier celular y conexión.</p>
+              </div>
+            </div>
+            <div class="pillar-item">
+              <div class="pillar-icon"><i class="fa-solid fa-bullseye"></i></div>
+              <div class="pillar-info">
+                <h4>100% Conversión</h4>
+                <p>Flujos de compra y reserva pensados para vender más.</p>
+              </div>
+            </div>
+            <div class="pillar-item">
+              <div class="pillar-icon"><i class="fa-solid fa-shield-halved"></i></div>
+              <div class="pillar-info">
+                <h4>Código Limpio</h4>
+                <p>Sin dependencias innecesarias, escalable y mantenible.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action buttons -->
+          <div class="cta-actions">
+            <button class="btn btn-primary btn-shine" id="open-quote-modal">
+              <i class="fa-solid fa-calculator"></i> Cotizar mi Proyecto
+            </button>
+            <a href="https://wa.me/542615511349?text=Hola!%20Vi%20tu%20laboratorio%20de%20componentes%20web%20y%20me%20gustar%C3%ADa%20cotizar%20un%20proyecto." target="_blank" class="btn btn-secondary btn-whatsapp">
+              <i class="fa-brands fa-whatsapp"></i> Hablar por WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Project Quote Modal -->
+  <div class="quote-modal-overlay" id="quote-modal-overlay">
+    <div class="quote-modal">
+      <button class="quote-close-btn" id="quote-close-btn" aria-label="Cerrar modal"><i class="fa-solid fa-xmark"></i></button>
+      <div class="quote-header">
+        <div class="quote-header-icon"><i class="fa-solid fa-calculator"></i></div>
+        <h3>Cotizador Rápido de Proyecto</h3>
+        <p>Seleccioná tus necesidades y te generamos un mensaje listo para WhatsApp.</p>
+      </div>
+      <form class="quote-form" id="quote-form">
+        <div class="form-group">
+          <label class="quote-label">Tipo de Solución que Buscás</label>
+          <div class="quote-types-grid" id="quote-types">
+            <button type="button" class="quote-type-btn active" data-type="E-commerce con Carrito">
+              <i class="fa-solid fa-cart-shopping"></i> E-commerce
+            </button>
+            <button type="button" class="quote-type-btn" data-type="Sistema de Reservas y Turnos">
+              <i class="fa-regular fa-calendar-check"></i> Turnos
+            </button>
+            <button type="button" class="quote-type-btn" data-type="Dashboard y Sistema Interno">
+              <i class="fa-solid fa-chart-line"></i> Dashboard
+            </button>
+            <button type="button" class="quote-type-btn" data-type="Sitio Web Corporativo Completo">
+              <i class="fa-solid fa-globe"></i> Web Completa
+            </button>
+            <button type="button" class="quote-type-btn" data-type="Componente Interactivo a Medida">
+              <i class="fa-solid fa-puzzle-piece"></i> A Medida
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="quote-label" for="quote-name">Tu Nombre o Empresa</label>
+          <input type="text" id="quote-name" required placeholder="Ej: Lucas González o Mi Empresa S.A." class="quote-input">
+        </div>
+
+        <div class="form-group">
+          <label class="quote-label" for="quote-contact">WhatsApp de Contacto</label>
+          <input type="text" id="quote-contact" required placeholder="+54 9 11 1234-5678" class="quote-input">
+        </div>
+
+        <div class="form-group">
+          <label class="quote-label" for="quote-notes">Breve descripción de lo que necesitas</label>
+          <textarea id="quote-notes" rows="2" placeholder="Ej: Queremos sumar un catálogo con carrito para venta mayorista..." class="quote-textarea"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-shine quote-submit-btn">
+          <i class="fa-brands fa-whatsapp"></i> Enviar Consulta Directa por WhatsApp
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#" class="logo">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>Showcase<span class="logo-dot">.</span></span>
+          </a>
+          <p>Un laboratorio de componentes web interactivos que demuestra desarrollo de alta calidad.</p>
+        </div>
+        <div class="footer-links">
+          <h5>Componentes</h5>
+          <a href="#comp-ecommerce">E-commerce</a>
+          <a href="#comp-dashboard">Dashboard</a>
+          <a href="#comp-booking">Reservas</a>
+          <a href="#comp-galleries">Galerías</a>
+          <a href="#comp-forms">Formularios</a>
+          <a href="#comp-advanced-comps">Avanzados</a>
+          <a href="#comp-api">API Explorer</a>
+          <a href="#comp-mapa">Mapa Interactivo</a>
+        </div>
+        <div class="footer-contact">
+          <h5>Contacto</h5>
+          <a href="https://wa.me/542615511349?text=Hola!%20Vi%20tu%20laboratorio%20de%20componentes%20web%20y%20me%20gustar%C3%ADa%20hacerte%20una%20consulta." target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp (261 551-1349)</a>
+          <a href="https://github.com/Gonza-wf/representacion" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+          <a href="https://linkedin.com" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+          <a href="#contact-cta"><i class="fa-solid fa-calculator"></i> Cotizar Proyecto</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Construido con <i class="fa-solid fa-heart" style="color: #ef4444"></i> usando Vanilla JS, CSS y Vite.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="drawer-backdrop" id="drawer-backdrop"></div>
+  <aside class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
+    <div class="drawer-header">
+      <a href="#" class="logo">
+        <i class="fa-solid fa-layer-group"></i>
+        <span>Showcase<span class="logo-dot">.</span></span>
+      </a>
+      <button id="drawer-close" class="icon-btn drawer-close-btn" aria-label="Cerrar menú">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div class="drawer-body">
+      <div class="drawer-section-label">Navegación</div>
+      <nav class="drawer-nav">
+        <a href="#hero" class="drawer-link"><i class="fa-solid fa-house"></i> Inicio</a>
+        <a href="#components" class="drawer-link"><i class="fa-solid fa-cubes"></i> Catálogo de Componentes</a>
+        <a href="#tech-stack" class="drawer-link"><i class="fa-solid fa-microchip"></i> Tecnologías</a>
+        <a href="#contact-cta" class="drawer-link drawer-cta-link"><i class="fa-solid fa-calculator"></i> Cotizar Proyecto</a>
+      </nav>
+
+      <div class="drawer-section-label">Saltar a Componente</div>
+      <div class="drawer-components-grid">
+        <a href="#comp-ecommerce" class="drawer-comp-card">
+          <i class="fa-solid fa-store"></i>
+          <span>E-commerce</span>
+        </a>
+        <a href="#comp-dashboard" class="drawer-comp-card">
+          <i class="fa-solid fa-chart-line"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="#comp-booking" class="drawer-comp-card">
+          <i class="fa-regular fa-calendar-check"></i>
+          <span>Reservas</span>
+        </a>
+        <a href="#comp-galleries" class="drawer-comp-card">
+          <i class="fa-solid fa-images"></i>
+          <span>Galerías</span>
+        </a>
+        <a href="#comp-forms" class="drawer-comp-card">
+          <i class="fa-solid fa-file-lines"></i>
+          <span>Formularios</span>
+        </a>
+        <a href="#comp-advanced-comps" class="drawer-comp-card">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          <span>Kanban</span>
+        </a>
+        <a href="#comp-api" class="drawer-comp-card">
+          <i class="fa-solid fa-satellite-dish"></i>
+          <span>API REST</span>
+        </a>
+        <a href="#comp-mapa" class="drawer-comp-card">
+          <i class="fa-solid fa-map-location-dot"></i>
+          <span>Mapa</span>
+        </a>
+      </div>
+
+      <div class="drawer-footer">
+        <button id="drawer-sound-toggle" class="btn btn-secondary drawer-sound-btn">
+          <i class="fa-solid fa-volume-xmark"></i> Sonidos: Off
+        </button>
+        <button id="drawer-theme-toggle" class="btn btn-secondary drawer-theme-btn">
+          <i class="fa-solid fa-moon"></i> Cambiar Modo
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Floating Back to Top Button -->
+  <button id="back-to-top" class="back-to-top-btn" aria-label="Volver al inicio" title="Volver arriba">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <script type="module" src="/main.js"></script>
+</body>
+</html>
