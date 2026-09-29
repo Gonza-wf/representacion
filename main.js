@@ -438,7 +438,7 @@ function initQuoteModal() {
 
     const submitBtn = form.querySelector('.quote-submit-btn');
     const originalText = submitBtn.innerHTML;
-    submitBtn.innerHTML = '<i class="fa-solid fa-circle-check"></i> ¡Generando Consulta WhatsApp...!';
+    submitBtn.innerHTML = '<i class="fa-solid fa-circle-check"></i> ¡Abriendo WhatsApp...!';
     submitBtn.disabled = true;
 
     // Build formatted message
