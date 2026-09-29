@@ -2008,7 +2008,39 @@ body.dark-mode .component-wrapper:hover {
 }
 
 @media (max-width: 480px) {
-  .hero-buttons { flex-direction: column; align-items: center; }
+  .hero-section {
+    padding: calc(var(--navbar-height) + 1.25rem) 1.25rem 3.5rem;
+    min-height: auto;
+  }
+  .hero-badge {
+    font-size: 0.78rem;
+    padding: 0.32rem 0.8rem;
+    margin-bottom: 1.25rem;
+    gap: 0.4rem;
+  }
+  .hero-content h1 {
+    font-size: clamp(1.85rem, 7.5vw, 2.35rem);
+    margin-bottom: 1.15rem;
+    line-height: 1.18;
+  }
+  .hero-content p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1.75rem;
+  }
+  .hero-buttons {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+    gap: 0.75rem;
+  }
+  .hero-buttons .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.85rem 1.25rem;
+  }
   .tech-grid { grid-template-columns: 1fr; }
   .showcase-container { padding: 1.5rem 0.5rem; }
   .quote-types-grid { grid-template-columns: 1fr; }
