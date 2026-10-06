@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileDrawer();
   initShowcase();
   initShowcaseTabs();
+  initKeyboardNavigation();
   initTechFooter();
 });
 
@@ -127,17 +128,37 @@ function initNavbarScroll() {
 }
 
 // --- Responsive Simulator ---
+// --- Responsive Simulator & Device Mockup Shell ---
 function initDeviceSimulator() {
   const buttons = document.querySelectorAll('.device-btn');
+  const shell = document.getElementById('device-shell');
   const viewport = document.getElementById('showcase-viewport');
+  const statusText = document.getElementById('device-status-text');
+
+  const LABELS = {
+    desktop: 'DESKTOP 60FPS • LIVE',
+    notebook: 'NOTEBOOK 60FPS • LIVE',
+    tablet: 'TABLET 60FPS • LIVE',
+    mobile: 'MOBILE 60FPS • LIVE'
+  };
 
   buttons.forEach(btn => {
     btn.addEventListener('click', () => {
       buttons.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       const device = btn.dataset.device;
-      viewport.className = '';
-      viewport.classList.add(`device-${device}`);
+
+      if (shell) {
+        shell.className = `showcase-device-shell device-${device}`;
+      }
+      if (viewport) {
+        viewport.className = `device-${device}`;
+      }
+      if (statusText) {
+        statusText.textContent = LABELS[device] || '60 FPS • LIVE';
+      }
+
+      window.dispatchEvent(new Event('resize'));
     });
   });
 }
@@ -156,6 +177,28 @@ export const COMPONENT_ORDER = [
 
 let currentCompIndex = 0;
 
+/**
+ * Updates the floating glowing pill behind active tab button
+ */
+export function updateTabPill(activeBtn) {
+  const pill = document.getElementById('showcase-tab-pill');
+  const track = document.getElementById('showcase-tabs-track');
+  if (!pill || !track) return;
+
+  if (!activeBtn) {
+    activeBtn = track.querySelector('.showcase-tab-btn.active');
+  }
+  if (!activeBtn) return;
+
+  const trackRect = track.getBoundingClientRect();
+  const btnRect = activeBtn.getBoundingClientRect();
+  const left = (btnRect.left - trackRect.left) + track.scrollLeft;
+
+  pill.style.width = `${btnRect.width}px`;
+  pill.style.transform = `translateX(${left}px)`;
+  pill.style.opacity = '1';
+}
+
 export function switchComponent(targetId, shouldScroll = false) {
   const index = COMPONENT_ORDER.indexOf(targetId);
   if (index === -1) return;
@@ -163,14 +206,27 @@ export function switchComponent(targetId, shouldScroll = false) {
 
   // Update nav tabs
   const tabBtns = document.querySelectorAll('.showcase-tab-btn');
+  let activeTabBtn = null;
   tabBtns.forEach(btn => {
     const isActive = btn.dataset.comp === targetId;
     btn.classList.toggle('active', isActive);
     btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
     if (isActive) {
+      activeTabBtn = btn;
       btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
     }
   });
+
+  // Smooth sliding pill update
+  if (activeTabBtn) {
+    updateTabPill(activeTabBtn);
+  }
+
+  // Update address bar path
+  const urlPathEl = document.getElementById('device-url-path');
+  if (urlPathEl) {
+    urlPathEl.textContent = `/${targetId}`;
+  }
 
   // Update component wrappers
   const wrappers = document.querySelectorAll('.component-wrapper');
@@ -179,10 +235,13 @@ export function switchComponent(targetId, shouldScroll = false) {
     w.classList.toggle('active', isTarget);
   });
 
-  // Update stepper counter
+  // Update stepper counter with pop bounce
   const counter = document.getElementById('showcase-tab-counter');
   if (counter) {
     counter.textContent = `${currentCompIndex + 1} / ${COMPONENT_ORDER.length}`;
+    counter.classList.remove('counter-pop');
+    void counter.offsetWidth; // trigger reflow
+    counter.classList.add('counter-pop');
   }
 
   // Trigger resize event so Chart.js and Leaflet re-render crisp
@@ -221,6 +280,62 @@ function initShowcaseTabs() {
       switchComponent(COMPONENT_ORDER[nextIndex]);
     });
   }
+
+  // Footer component links
+  document.querySelectorAll('.footer-links a[data-comp]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      switchComponent(link.dataset.comp, true);
+    });
+  });
+
+  // Sliding pill listeners
+  const track = document.getElementById('showcase-tabs-track');
+  if (track) {
+    track.addEventListener('scroll', () => updateTabPill(), { passive: true });
+  }
+  window.addEventListener('resize', () => updateTabPill(), { passive: true });
+  setTimeout(() => updateTabPill(), 100);
+}
+
+// --- Keyboard Navigation (Power User Shortcuts) ---
+function initKeyboardNavigation() {
+  function flashKey(keyAttr) {
+    const pill = document.getElementById('kbd-shortcuts-pill');
+    if (!pill) return;
+    const keyEl = pill.querySelector(`.kbd-key[data-key="${keyAttr}"]`);
+    if (keyEl) {
+      keyEl.classList.add('kbd-active');
+      setTimeout(() => keyEl.classList.remove('kbd-active'), 250);
+    }
+  }
+
+  document.addEventListener('keydown', (e) => {
+    const activeEl = document.activeElement;
+    const tag = activeEl ? activeEl.tagName.toLowerCase() : '';
+    if (tag === 'input' || tag === 'textarea' || activeEl?.isContentEditable) {
+      return;
+    }
+
+    if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      const nextIndex = (currentCompIndex + 1) % COMPONENT_ORDER.length;
+      switchComponent(COMPONENT_ORDER[nextIndex]);
+      flashKey('ArrowRight');
+    } else if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      const prevIndex = (currentCompIndex - 1 + COMPONENT_ORDER.length) % COMPONENT_ORDER.length;
+      switchComponent(COMPONENT_ORDER[prevIndex]);
+      flashKey('ArrowLeft');
+    } else if (e.key >= '1' && e.key <= '8') {
+      const idx = parseInt(e.key, 10) - 1;
+      if (idx >= 0 && idx < COMPONENT_ORDER.length) {
+        e.preventDefault();
+        switchComponent(COMPONENT_ORDER[idx]);
+        flashKey('numbers');
+      }
+    }
+  });
 }
 
 // --- Component Wrapper Generator ---
@@ -336,33 +451,33 @@ function escapeHTML(str) {
   );
 }
 
-// --- Tech Footer Animation ---
+// --- Tech Architecture HUD Animation ---
 function initTechFooter() {
-  const techItems = document.querySelectorAll('.tech-item');
+  const specCards = document.querySelectorAll('.tech-spec-card');
+  if (!specCards.length) return;
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
       if (entry.isIntersecting) {
         setTimeout(() => {
           entry.target.classList.add('visible');
-          // Animate progress bar: read width from inline style on .tech-progress
-          const bar = entry.target.querySelector('.tech-progress');
-          if (bar) {
-            const targetWidth = bar.style.width; // e.g. "95%"
-            bar.style.width = '0%';
+          const meter = entry.target.querySelector('.spec-meter-fill');
+          if (meter) {
+            const targetWidth = meter.style.width; // e.g. "98%"
+            meter.style.width = '0%';
             requestAnimationFrame(() => {
               setTimeout(() => {
-                bar.style.width = targetWidth;
-              }, 50);
+                meter.style.width = targetWidth;
+              }, 40);
             });
           }
-        }, i * 100);
+        }, i * 90);
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.15 });
 
-  techItems.forEach(item => observer.observe(item));
+  specCards.forEach(card => observer.observe(card));
 }
 
 // --- Initialize All Showcase Components (ordered) ---

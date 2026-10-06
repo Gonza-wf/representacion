@@ -117,6 +117,15 @@
         <p>Seleccioná una mini-aplicación interactiva para probarla en vivo con su código e información técnica.</p>
       </div>
       <div class="controls-right">
+        <!-- Keyboard Navigation Hint -->
+        <div class="kbd-shortcuts-pill" id="kbd-shortcuts-pill" title="Usa las teclas [←] [→] o los números [1-8] para navegar">
+          <span class="kbd-hint-icon"><i class="fa-regular fa-keyboard"></i></span>
+          <kbd class="kbd-key" data-key="ArrowLeft">←</kbd>
+          <kbd class="kbd-key" data-key="ArrowRight">→</kbd>
+          <span class="kbd-sep">/</span>
+          <kbd class="kbd-key" data-key="numbers">1-8</kbd>
+        </div>
+
         <span class="simulator-label"><i class="fa-solid fa-display"></i> Dispositivo:</span>
         <div class="device-toggles">
           <button class="device-btn active" data-device="desktop" title="Desktop (100%)">
@@ -138,6 +147,9 @@
     <!-- Futuristic Component Tabs Dock -->
     <div class="showcase-tabs-nav">
       <div class="showcase-tabs-track" id="showcase-tabs-track" role="tablist" aria-label="Componentes del Showcase">
+        <!-- Sliding Pill Indicator -->
+        <div class="showcase-tab-pill" id="showcase-tab-pill" aria-hidden="true"></div>
+
         <button class="showcase-tab-btn active" data-comp="ecommerce" role="tab" aria-selected="true">
           <i class="fa-solid fa-store"></i> <span>E-commerce</span>
         </button>
@@ -165,79 +177,114 @@
       </div>
 
       <div class="showcase-stepper">
-        <button id="showcase-prev-btn" class="stepper-arrow-btn" aria-label="Componente anterior" title="Anterior">
+        <button id="showcase-prev-btn" class="stepper-arrow-btn" aria-label="Componente anterior" title="Anterior [←]">
           <i class="fa-solid fa-chevron-left"></i>
         </button>
         <span id="showcase-tab-counter" class="stepper-counter">1 / 8</span>
-        <button id="showcase-next-btn" class="stepper-arrow-btn" aria-label="Siguiente componente" title="Siguiente">
+        <button id="showcase-next-btn" class="stepper-arrow-btn" aria-label="Siguiente componente" title="Siguiente [→]">
           <i class="fa-solid fa-chevron-right"></i>
         </button>
       </div>
     </div>
 
-    <!-- Components Viewport -->
-    <div id="showcase-viewport" class="device-desktop">
-      <!-- Componentes inyectados dinámicamente por main.js -->
+    <!-- Futuristic Device Mockup Shell -->
+    <div class="showcase-device-shell device-desktop" id="device-shell">
+      <!-- Window Chrome Bar (Desktop / Notebook / Tablet) -->
+      <div class="device-chrome-bar" id="device-chrome-bar">
+        <div class="chrome-dots">
+          <span class="dot dot-close"></span>
+          <span class="dot dot-min"></span>
+          <span class="dot dot-max"></span>
+        </div>
+        <div class="chrome-address">
+          <i class="fa-solid fa-shield-halved lock-icon"></i>
+          <span class="url-protocol">https://</span><span class="url-host">showcase.studio</span><span class="url-path" id="device-url-path">/ecommerce</span>
+        </div>
+        <div class="chrome-status">
+          <span class="live-dot"></span>
+          <span class="live-text" id="device-status-text">60 FPS • LIVE</span>
+        </div>
+      </div>
+
+      <!-- Dynamic Island for Mobile Frame -->
+      <div class="device-dynamic-island" id="device-dynamic-island">
+        <div class="island-camera"></div>
+        <div class="island-mic"></div>
+      </div>
+
+      <!-- Components Viewport -->
+      <div id="showcase-viewport" class="device-desktop">
+        <!-- Componentes inyectados dinámicamente por main.js -->
+      </div>
+
+      <!-- Mobile Home Bar Indicator -->
+      <div class="device-home-bar" id="device-home-bar"></div>
     </div>
 
   </main>
 
-  <!-- Tech Stack Section -->
+  <!-- Futuristic Minimalist Tech HUD Matrix -->
   <section id="tech-stack" class="tech-section">
     <div class="container">
-      <div class="section-header">
-        <h2>Stack Tecnológico</h2>
-        <p>Todo construido sin frameworks. Puro dominio del lenguaje.</p>
+      <div class="tech-hud-header">
+        <div class="hud-pill">
+          <span class="pulse-dot"></span>
+          <span>CORE ARCHITECTURE</span>
+        </div>
+        <h2>Ingeniería Web de Precisión</h2>
+        <p>Arquitectura pura, cero dependencias innecesarias y máximo rendimiento de ejecución.</p>
       </div>
-      <div class="tech-grid">
-        <div class="tech-item">
-          <div class="tech-icon html"><i class="fa-brands fa-html5"></i></div>
-          <h4>HTML5</h4>
-          <p>Semántico, accesible y bien estructurado.</p>
-          <div class="tech-bar"><div class="tech-progress" style="width: 95%"></div></div>
+
+      <div class="tech-hud-grid">
+        <div class="tech-spec-card">
+          <div class="spec-top">
+            <span class="spec-tag"><i class="fa-solid fa-gauge-high"></i> LATENCIA</span>
+            <span class="spec-value">&lt; 100ms</span>
+          </div>
+          <h4>First Paint Instantáneo</h4>
+          <p>Estructura sin scripts de bloqueo, código optimizado al byte y render ultra veloz.</p>
+          <div class="spec-meter"><div class="spec-meter-fill fill-speed" style="width: 98%"></div></div>
         </div>
-        <div class="tech-item">
-          <div class="tech-icon css"><i class="fa-brands fa-css3-alt"></i></div>
-          <h4>CSS3</h4>
-          <p>Variables, Grid, Flexbox y animaciones puras.</p>
-          <div class="tech-bar"><div class="tech-progress" style="width: 90%"></div></div>
+
+        <div class="tech-spec-card">
+          <div class="spec-top">
+            <span class="spec-tag"><i class="fa-brands fa-js"></i> MOTOR</span>
+            <span class="spec-value">Vanilla ES6+</span>
+          </div>
+          <h4>Zero Framework Overhead</h4>
+          <p>100% JavaScript moderno nativo, manipulación directa del DOM y arquitectura modular limpia.</p>
+          <div class="spec-meter"><div class="spec-meter-fill fill-clean" style="width: 100%"></div></div>
         </div>
-        <div class="tech-item">
-          <div class="tech-icon js"><i class="fa-brands fa-js"></i></div>
-          <h4>JavaScript</h4>
-          <p>ES Modules, DOM manipulation, State management.</p>
-          <div class="tech-bar"><div class="tech-progress" style="width: 92%"></div></div>
+
+        <div class="tech-spec-card">
+          <div class="spec-top">
+            <span class="spec-tag"><i class="fa-solid fa-film"></i> RENDIMIENTO</span>
+            <span class="spec-value">60 FPS</span>
+          </div>
+          <h4>Animaciones Aceleradas</h4>
+          <p>Microinteracciones fluidas procesadas directamente por GPU sin caídas de cuadros por segundo.</p>
+          <div class="spec-meter"><div class="spec-meter-fill fill-fps" style="width: 96%"></div></div>
         </div>
-        <div class="tech-item">
-          <div class="tech-icon responsive"><i class="fa-solid fa-mobile-screen-button"></i></div>
-          <h4>Responsive</h4>
-          <p>Diseño adaptable a todos los dispositivos.</p>
-          <div class="tech-bar"><div class="tech-progress" style="width: 95%"></div></div>
+
+        <div class="tech-spec-card">
+          <div class="spec-top">
+            <span class="spec-tag"><i class="fa-solid fa-cubes"></i> MODULARIDAD</span>
+            <span class="spec-value">100% Aislado</span>
+          </div>
+          <h4>Micro-Aplicaciones Reutilizables</h4>
+          <p>Cada componente funciona de manera independiente, exportable e integrable en cualquier sitio.</p>
+          <div class="spec-meter"><div class="spec-meter-fill fill-modular" style="width: 95%"></div></div>
         </div>
-        <div class="tech-item">
-          <div class="tech-icon animation"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-          <h4>Animaciones</h4>
-          <p>CSS Keyframes, Transitions y efectos interactivos.</p>
-          <div class="tech-bar"><div class="tech-progress" style="width: 85%"></div></div>
-        </div>
-        <div class="tech-item">
-          <div class="tech-icon storage"><i class="fa-solid fa-database"></i></div>
-          <h4>LocalStorage</h4>
-          <p>Persistencia de datos sin servidor ni base de datos.</p>
-          <div class="tech-bar"><div class="tech-progress" style="width: 88%"></div></div>
-        </div>
-        <div class="tech-item">
-          <div class="tech-icon api"><i class="fa-solid fa-plug"></i></div>
-          <h4>Fetch API</h4>
-          <p>Consumo de datos externos (simulados con JSON).</p>
-          <div class="tech-bar"><div class="tech-progress" style="width: 80%"></div></div>
-        </div>
-        <div class="tech-item">
-          <div class="tech-icon vite"><i class="fa-solid fa-bolt"></i></div>
-          <h4>Vite</h4>
-          <p>Entorno de desarrollo moderno con módulos ES nativos.</p>
-          <div class="tech-bar"><div class="tech-progress" style="width: 78%"></div></div>
-        </div>
+      </div>
+
+      <!-- Sleek Tech Badges Strip -->
+      <div class="tech-chips-strip">
+        <div class="tech-chip"><i class="fa-brands fa-html5"></i> Semantic HTML5</div>
+        <div class="tech-chip"><i class="fa-brands fa-css3-alt"></i> Modern CSS & Grid</div>
+        <div class="tech-chip"><i class="fa-brands fa-js"></i> ECMAScript Modules</div>
+        <div class="tech-chip"><i class="fa-solid fa-mobile-screen"></i> Micro-Breakpoints</div>
+        <div class="tech-chip"><i class="fa-solid fa-database"></i> Reactive LocalStorage</div>
+        <div class="tech-chip"><i class="fa-solid fa-bolt"></i> Vite Bundler</div>
       </div>
     </div>
   </section>
@@ -365,14 +412,14 @@
         </div>
         <div class="footer-links">
           <h5>Componentes</h5>
-          <a href="#comp-ecommerce">E-commerce</a>
-          <a href="#comp-dashboard">Dashboard</a>
-          <a href="#comp-booking">Reservas</a>
-          <a href="#comp-galleries">Galerías</a>
-          <a href="#comp-forms">Formularios</a>
-          <a href="#comp-advanced-comps">Avanzados</a>
-          <a href="#comp-api">API Explorer</a>
-          <a href="#comp-mapa">Mapa Interactivo</a>
+          <a href="#components" data-comp="ecommerce">E-commerce</a>
+          <a href="#components" data-comp="dashboard">Dashboard</a>
+          <a href="#components" data-comp="booking">Reservas</a>
+          <a href="#components" data-comp="galleries">Galerías</a>
+          <a href="#components" data-comp="forms">Formularios</a>
+          <a href="#components" data-comp="advanced-comps">Kanban</a>
+          <a href="#components" data-comp="api">API Explorer</a>
+          <a href="#components" data-comp="mapa">Mapa Interactivo</a>
         </div>
         <div class="footer-contact">
           <h5>Contacto</h5>
