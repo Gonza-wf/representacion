@@ -300,16 +300,6 @@ function initShowcaseTabs() {
 
 // --- Keyboard Navigation (Power User Shortcuts) ---
 function initKeyboardNavigation() {
-  function flashKey(keyAttr) {
-    const pill = document.getElementById('kbd-shortcuts-pill');
-    if (!pill) return;
-    const keyEl = pill.querySelector(`.kbd-key[data-key="${keyAttr}"]`);
-    if (keyEl) {
-      keyEl.classList.add('kbd-active');
-      setTimeout(() => keyEl.classList.remove('kbd-active'), 250);
-    }
-  }
-
   document.addEventListener('keydown', (e) => {
     const activeEl = document.activeElement;
     const tag = activeEl ? activeEl.tagName.toLowerCase() : '';
@@ -321,18 +311,15 @@ function initKeyboardNavigation() {
       e.preventDefault();
       const nextIndex = (currentCompIndex + 1) % COMPONENT_ORDER.length;
       switchComponent(COMPONENT_ORDER[nextIndex]);
-      flashKey('ArrowRight');
     } else if (e.key === 'ArrowLeft') {
       e.preventDefault();
       const prevIndex = (currentCompIndex - 1 + COMPONENT_ORDER.length) % COMPONENT_ORDER.length;
       switchComponent(COMPONENT_ORDER[prevIndex]);
-      flashKey('ArrowLeft');
     } else if (e.key >= '1' && e.key <= '8') {
       const idx = parseInt(e.key, 10) - 1;
       if (idx >= 0 && idx < COMPONENT_ORDER.length) {
         e.preventDefault();
         switchComponent(COMPONENT_ORDER[idx]);
-        flashKey('numbers');
       }
     }
   });
