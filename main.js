@@ -248,11 +248,18 @@ export function switchComponent(targetId, shouldScroll = false) {
   window.dispatchEvent(new Event('resize'));
 
   if (shouldScroll) {
-    const showcaseSection = document.getElementById('components');
-    if (showcaseSection) {
-      const topOffset = showcaseSection.getBoundingClientRect().top + window.scrollY - 75;
-      window.scrollTo({ top: topOffset, behavior: 'smooth' });
-    }
+    requestAnimationFrame(() => {
+      const deviceShell = document.getElementById('device-shell');
+      const tabsNav = document.querySelector('.showcase-tabs-nav');
+      const target = deviceShell || document.getElementById('components');
+      if (target) {
+        const navbarHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--navbar-height')) || 64;
+        // If tabs nav is sticky, account for it too
+        const tabsHeight = tabsNav ? tabsNav.offsetHeight + 12 : 0;
+        const topOffset = target.getBoundingClientRect().top + window.scrollY - navbarHeight - tabsHeight - 16;
+        window.scrollTo({ top: topOffset, behavior: 'smooth' });
+      }
+    });
   }
 }
 
@@ -260,7 +267,7 @@ function initShowcaseTabs() {
   const tabBtns = document.querySelectorAll('.showcase-tab-btn');
   tabBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      switchComponent(btn.dataset.comp);
+      switchComponent(btn.dataset.comp, true);
     });
   });
 
@@ -270,14 +277,14 @@ function initShowcaseTabs() {
   if (prevBtn) {
     prevBtn.addEventListener('click', () => {
       const prevIndex = (currentCompIndex - 1 + COMPONENT_ORDER.length) % COMPONENT_ORDER.length;
-      switchComponent(COMPONENT_ORDER[prevIndex]);
+      switchComponent(COMPONENT_ORDER[prevIndex], true);
     });
   }
 
   if (nextBtn) {
     nextBtn.addEventListener('click', () => {
       const nextIndex = (currentCompIndex + 1) % COMPONENT_ORDER.length;
-      switchComponent(COMPONENT_ORDER[nextIndex]);
+      switchComponent(COMPONENT_ORDER[nextIndex], true);
     });
   }
 
