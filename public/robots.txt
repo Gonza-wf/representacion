@@ -1,0 +1,6 @@
+# robots.txt for Showcase Interactivo
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://showcase.studio/sitemap.xml

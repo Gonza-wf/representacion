@@ -5,36 +5,36 @@ import { registerComponent } from '../../../main.js';
 // ─────────────────────────────────────────────
 
 var CAROUSEL_SLIDES = [
-  { img:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80', title:'Dolomitas, Italia', sub:'Un paisaje de cuento' },
-  { img:'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1200&q=80', title:'Costa de Amalfi', sub:'El sur de Italia' },
-  { img:'https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=1200&q=80', title:'Patagonia, Argentina', sub:'El fin del mundo' },
-  { img:'https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=1200&q=80', title:'Selva Amazónica', sub:'El pulmón del mundo' },
-  { img:'https://images.unsplash.com/photo-1542224566-6e85f2e6772f?w=1200&q=80', title:'Fiordos de Noruega', sub:'Majestuoso norte' }
+  { img:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&w=1200&q=80', title:'Dolomitas, Italia', sub:'Un paisaje de cuento' },
+  { img:'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&w=1200&q=80', title:'Costa de Amalfi', sub:'El sur de Italia' },
+  { img:'https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&w=1200&q=80', title:'Patagonia, Argentina', sub:'El fin del mundo' },
+  { img:'https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?auto=format&w=1200&q=80', title:'Selva Amazónica', sub:'El pulmón del mundo' },
+  { img:'https://images.unsplash.com/photo-1542224566-6e85f2e6772f?auto=format&w=1200&q=80', title:'Fiordos de Noruega', sub:'Majestuoso norte' }
 ];
 
 var SLIDER_SLIDES = [
-  { img:'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=900&q=80', title:'Chicago, EE.UU.' },
-  { img:'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=900&q=80', title:'Paris, Francia' },
-  { img:'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=900&q=80', title:'Londres, UK' },
-  { img:'https://images.unsplash.com/photo-1534430480872-3498386e7856?w=900&q=80', title:'Tokyo, Japón' }
+  { img:'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&w=900&q=80', title:'Chicago, EE.UU.' },
+  { img:'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&w=900&q=80', title:'Paris, Francia' },
+  { img:'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&w=900&q=80', title:'Londres, UK' },
+  { img:'https://images.unsplash.com/photo-1534430480872-3498386e7856?auto=format&w=900&q=80', title:'Tokyo, Japón' }
 ];
 
 var MASONRY_IMGS = [
-  { img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80', caption:'Ferrari en pista', tall:true  },
-  { img:'https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=700&q=80', caption:'Gaming setup', tall:false },
-  { img:'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=700&q=80', caption:'Montaña nevada', tall:true  },
-  { img:'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=700&q=80', caption:'Restaurante íntimo', tall:false },
-  { img:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=700&q=80', caption:'Playa tropical', tall:false },
-  { img:'https://images.unsplash.com/photo-1473876988266-ca0860a443b8?w=700&q=80', caption:'Cascada oculta', tall:true  },
-  { img:'https://images.unsplash.com/photo-1533929736458-ca588d08c8be?w=700&q=80', caption:'Café de specialty', tall:false },
-  { img:'https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?w=700&q=80', caption:'Santorini al atardecer', tall:true  }
+  { img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&w=700&q=80', caption:'Ferrari en pista', tall:true  },
+  { img:'https://images.unsplash.com/photo-1552820728-8b83bb6b773f?auto=format&w=700&q=80', caption:'Gaming setup', tall:false },
+  { img:'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&w=700&q=80', caption:'Montaña nevada', tall:true  },
+  { img:'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&w=700&q=80', caption:'Restaurante íntimo', tall:false },
+  { img:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&w=700&q=80', caption:'Playa tropical', tall:false },
+  { img:'https://images.unsplash.com/photo-1473876988266-ca0860a443b8?auto=format&w=700&q=80', caption:'Cascada oculta', tall:true  },
+  { img:'https://images.unsplash.com/photo-1533929736458-ca588d08c8be?auto=format&w=700&q=80', caption:'Café de specialty', tall:false },
+  { img:'https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?auto=format&w=700&q=80', caption:'Santorini al atardecer', tall:true  }
 ];
 
 var BEFORE_AFTER_PRESETS = {
   detailing: {
     label: 'Detailing Automotriz',
-    beforeSrc: 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=1200&q=80',
-    afterSrc:  'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=1200&q=80',
+    beforeSrc: 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&w=1200&q=80',
+    afterSrc:  'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&w=1200&q=80',
     beforeFilter: 'grayscale(0.85) contrast(0.8) brightness(0.6) blur(0.5px)',
     afterFilter:  'saturate(1.4) contrast(1.12) brightness(1.06)',
     beforeLabel: 'ANTES: Pintura rayada y opaca',
@@ -42,8 +42,8 @@ var BEFORE_AFTER_PRESETS = {
   },
   interior: {
     label: 'Reforma de Interiores',
-    beforeSrc: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80',
-    afterSrc:  'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80',
+    beforeSrc: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&w=1200&q=80',
+    afterSrc:  'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&w=1200&q=80',
     beforeFilter: 'grayscale(0.9) brightness(0.52) contrast(0.88)',
     afterFilter:  'saturate(1.28) brightness(1.05) contrast(1.05)',
     beforeLabel:  'ANTES: Sin iluminación ni vida',
@@ -51,8 +51,8 @@ var BEFORE_AFTER_PRESETS = {
   },
   photo: {
     label: 'Edición Fotográfica',
-    beforeSrc: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80',
-    afterSrc:  'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80',
+    beforeSrc: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&w=1200&q=80',
+    afterSrc:  'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&w=1200&q=80',
     beforeFilter: 'grayscale(1) brightness(0.6) contrast(0.8)',
     afterFilter:  'saturate(1.5) contrast(1.15) brightness(1.1)',
     beforeLabel:  'ANTES: Archivo RAW sin procesar',
@@ -139,7 +139,7 @@ const html = `
     <button class="lb-close" id="lb-close"><i class="fa-solid fa-xmark"></i></button>
     <button class="lb-nav lb-prev" id="lb-prev"><i class="fa-solid fa-chevron-left"></i></button>
     <div class="lb-content">
-      <img id="lb-img" src="" alt="">
+      <img id="lb-img" src="" alt="Vista ampliada en alta resolución" loading="lazy">
       <div class="lb-caption" id="lb-caption"></div>
       <div class="lb-counter" id="lb-counter"></div>
     </div>
@@ -192,12 +192,12 @@ const css = `
   .carousel-dot.active { background:white; width:20px; border-radius:4px; }
 
   /* Manual Slider */
-  .slider-wrap { position:relative; }
-  .slider-viewport { overflow:hidden; border-radius:var(--radius-lg); height:320px; }
-  @media(max-width:480px) { .slider-viewport { height:200px; } }
-  .slider-track { display:flex; height:100%; transition:transform 0.5s cubic-bezier(.4,0,.2,1); }
-  .slider-slide { min-width:100%; height:100%; flex-shrink:0; position:relative; }
-  .slider-slide img { width:100%; height:100%; object-fit:cover; }
+  .slider-wrap { position:relative; width:100%; max-width:100%; box-sizing:border-box; }
+  .slider-viewport { position:relative; overflow:hidden; border-radius:var(--radius-lg); height:320px; width:100%; max-width:100%; box-sizing:border-box; }
+  @media(max-width:480px) { .slider-viewport { height:220px; } }
+  .slider-track { display:flex; width:100%; height:100%; transition:transform 0.45s cubic-bezier(.4,0,.2,1); will-change:transform; touch-action:pan-y; box-sizing:border-box; }
+  .slider-slide { flex:0 0 100%; width:100%; min-width:100%; max-width:100%; height:100%; flex-shrink:0; position:relative; overflow:hidden; box-sizing:border-box; }
+  .slider-slide img { width:100%; height:100%; object-fit:cover; display:block; }
   .slider-slide-label { position:absolute; bottom:0; left:0; right:0; padding:1rem; background:linear-gradient(to top, rgba(0,0,0,0.7), transparent); color:white; font-weight:700; font-size:1rem; }
   .slider-btn { position:absolute; top:50%; transform:translateY(-60%); z-index:10; width:40px; height:40px; border-radius:50%; background:rgba(0,0,0,0.55); color:white; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:1rem; transition:var(--transition); backdrop-filter:blur(4px); }
   .slider-btn:hover { background:rgba(0,0,0,0.8); }
@@ -206,7 +206,7 @@ const css = `
   .slider-info { display:flex; align-items:center; justify-content:space-between; margin-top:0.75rem; font-size:0.88rem; }
   .slider-title-display { font-weight:600; }
   .slider-count { color:var(--text-muted); font-size:0.82rem; }
-  .slider-thumbs { display:flex; gap:0.5rem; margin-top:0.5rem; overflow-x:auto; }
+  .slider-thumbs { display:flex; gap:0.5rem; margin-top:0.5rem; overflow-x:auto; -webkit-overflow-scrolling:touch; }
   .slider-thumb { width:64px; height:44px; object-fit:cover; border-radius:var(--radius-sm); cursor:pointer; border:2px solid transparent; opacity:0.65; transition:var(--transition); flex-shrink:0; }
   .slider-thumb.active { border-color:var(--primary-color); opacity:1; }
 
@@ -481,13 +481,25 @@ function onMount(container) {
   container.querySelector('#sl-prev').addEventListener('click', function() { goSlider(sliderIndex - 1); });
   container.querySelector('#sl-next').addEventListener('click', function() { goSlider(sliderIndex + 1); });
 
-  // Touch swipe
-  sliderTrack.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; });
+  // Touch swipe with touch-action awareness
+  var touchStartX = 0;
+  var touchStartY = 0;
+  sliderTrack.addEventListener('touchstart', function(e) {
+    if (e.touches && e.touches[0]) {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    }
+  }, { passive: true });
+
   sliderTrack.addEventListener('touchend', function(e) {
+    if (!e.changedTouches || !e.changedTouches[0]) return;
     var dx = e.changedTouches[0].clientX - touchStartX;
-    if (dx < -50) goSlider(sliderIndex + 1);
-    else if (dx > 50) goSlider(sliderIndex - 1);
-  });
+    var dy = e.changedTouches[0].clientY - touchStartY;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 35) {
+      if (dx < 0) goSlider(sliderIndex + 1);
+      else goSlider(sliderIndex - 1);
+    }
+  }, { passive: true });
 
   // ===== MASONRY + LIGHTBOX =====
   var masonryGrid = container.querySelector('#masonry-grid');

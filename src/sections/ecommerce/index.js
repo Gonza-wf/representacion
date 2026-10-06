@@ -78,7 +78,7 @@ const html = `
       <button class="modal-close" id="modal-close"><i class="fa-solid fa-xmark"></i></button>
       <div class="modal-body">
         <div class="modal-img-side">
-          <img id="modal-img" src="" alt="">
+          <img id="modal-img" src="" alt="Detalle del producto seleccionado" loading="lazy">
         </div>
         <div class="modal-info-side">
           <span class="modal-cat" id="modal-cat"></span>

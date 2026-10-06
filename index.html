@@ -9,11 +9,24 @@
   <meta name="author" content="Showcase Labs" />
   <meta name="theme-color" content="#2563eb" />
 
+  <!-- Security & HTTPS Enforcement -->
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+  <script>
+    if (location.protocol === 'http:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+      location.href = location.href.replace('http:', 'https:');
+    }
+  </script>
+
+  <!-- Canonical & Crawling -->
+  <link rel="canonical" href="https://showcase.studio/" />
+  <meta name="robots" content="index, follow" />
+
   <!-- Open Graph / WhatsApp / Facebook / LinkedIn -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Showcase Labs" />
   <meta property="og:title" content="Showcase Interactivo — Laboratorio de Componentes Web" />
   <meta property="og:description" content="Explorá 8 mini-aplicaciones interactivas: E-commerce con carrito, Dashboard con gráficos, Reservas, Galerías, Formularios avanzados, Kanban, API REST y Mapa interactivo." />
+  <meta property="og:url" content="https://showcase.studio/" />
   <meta property="og:image" content="/og-preview.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1200" />
@@ -27,13 +40,105 @@
   <meta name="twitter:description" content="Explorá 8 mini-aplicaciones interactivas construidas con JavaScript moderno y diseño responsive de alta calidad." />
   <meta name="twitter:image" content="/og-preview.jpg" />
 
+  <!-- Icons & Favicons -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="alternate icon" href="/favicon.svg" />
   <link rel="apple-touch-icon" href="/favicon.svg" />
+  <meta name="msapplication-TileColor" content="#2563eb" />
+
+  <!-- Preconnect & Performance -->
+  <link rel="dns-prefetch" href="https://images.unsplash.com">
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="/style.css">
+
+  <!-- Datos Estructurados Schema.org / Ficha de Google / LocalBusiness & WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://showcase.studio/#business",
+        "name": "Showcase Labs — Estudio de Desarrollo Web",
+        "image": "https://showcase.studio/og-preview.jpg",
+        "url": "https://showcase.studio/",
+        "telephone": "+54-261-551-1349",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Av. San Martín 1200",
+          "addressLocality": "Mendoza",
+          "addressRegion": "Mendoza",
+          "postalCode": "5500",
+          "addressCountry": "AR"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -32.8895,
+          "longitude": -68.8458
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "09:00",
+            "closes": "18:00"
+          }
+        ],
+        "sameAs": [
+          "https://github.com/Gonza-wf/representacion",
+          "https://wa.me/542615511349"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://showcase.studio/#website",
+        "url": "https://showcase.studio/",
+        "name": "Showcase Interactivo",
+        "description": "Laboratorio de componentes web interactivos de alto rendimiento en Vanilla JavaScript.",
+        "inLanguage": "es"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://showcase.studio/#app",
+        "name": "Showcase Studio 2.0",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "All",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Privacy-Friendly Analytics Tracker & Google Analytics Stub -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SHOWCASE-LABS', { anonymize_ip: true });
+
+    // Internal Custom Event Dispatcher
+    window.trackAnalyticsEvent = function(category, action, label) {
+      if (typeof gtag === 'function') {
+        gtag('event', action, {
+          event_category: category,
+          event_label: label
+        });
+      }
+      try {
+        window.dispatchEvent(new CustomEvent('app:analytics', { detail: { category, action, label } }));
+      } catch (e) {}
+    };
+  </script>
 </head>
 <body class="light-mode">
 
@@ -381,6 +486,10 @@
           <textarea id="quote-notes" rows="2" placeholder="Ej: Queremos sumar un catálogo con carrito para venta mayorista..." class="quote-textarea"></textarea>
         </div>
 
+        <!-- Anti-Spam Honeypot & Timing Token -->
+        <input type="text" name="_hp_company_url" id="quote-hp" style="position:absolute;left:-9999px;opacity:0;pointer-events:none;" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="hidden" id="quote-token" value="">
+
         <button type="submit" class="btn btn-primary btn-shine quote-submit-btn">
           <i class="fa-brands fa-whatsapp"></i> Enviar por WhatsApp
         </button>
@@ -397,7 +506,7 @@
             <i class="fa-solid fa-layer-group"></i>
             <span>Showcase<span class="logo-dot">.</span></span>
           </a>
-          <p>Un laboratorio de componentes web interactivos que demuestra desarrollo de alta calidad.</p>
+          <p>Un laboratorio de componentes web interactivos que demuestra desarrollo de alta calidad, alto rendimiento y buenas prácticas.</p>
         </div>
         <div class="footer-links">
           <h5>Componentes</h5>
@@ -410,6 +519,13 @@
           <a href="#components" data-comp="api">API Explorer</a>
           <a href="#components" data-comp="mapa">Mapa Interactivo</a>
         </div>
+        <div class="footer-legal">
+          <h5>Legal & Confianza</h5>
+          <button type="button" class="footer-btn-link" id="link-aviso-legal"><i class="fa-solid fa-scale-balanced"></i> Aviso Legal</button>
+          <button type="button" class="footer-btn-link" id="link-privacidad"><i class="fa-solid fa-user-shield"></i> Política de Privacidad</button>
+          <button type="button" class="footer-btn-link" id="link-cookies"><i class="fa-solid fa-cookie-bite"></i> Aviso de Cookies</button>
+          <a href="https://maps.google.com/?q=Showcase+Labs+Mendoza" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-google"></i> Ficha de Google</a>
+        </div>
         <div class="footer-contact">
           <h5>Contacto</h5>
           <a href="https://wa.me/542615511349?text=Hola!%20Vi%20tu%20laboratorio%20de%20componentes%20web%20y%20me%20gustar%C3%ADa%20hacerte%20una%20consulta." target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp (261 551-1349)</a>
@@ -419,10 +535,79 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>Construido con <i class="fa-solid fa-heart" style="color: #ef4444"></i> usando Vanilla JS, CSS y Vite.</p>
+        <p>© 2026 Showcase Labs. Todos los derechos reservados. Construido con Vanilla JS, CSS3 y Vite.</p>
       </div>
     </div>
   </footer>
+
+  <!-- Legal Modal: Aviso Legal -->
+  <div class="legal-modal-overlay" id="modal-legal-overlay" aria-hidden="true">
+    <div class="legal-modal-card">
+      <div class="legal-modal-header">
+        <div class="legal-badge"><i class="fa-solid fa-scale-balanced"></i> INFORMACIÓN LEGAL</div>
+        <button class="modal-close-icon" id="legal-close-btn" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="legal-modal-body">
+        <h3>Aviso Legal</h3>
+        <p>En cumplimiento con las normativas internacionales de servicios de la sociedad de la información y comercio electrónico, se informa que este sitio web (<strong>Showcase Labs</strong>) es un entorno de demostración técnica y laboratorio de ingeniería de software.</p>
+        
+        <h4>1. Identificación del Titular</h4>
+        <p><strong>Titular:</strong> Showcase Labs — Estudio de Desarrollo Web<br>
+        <strong>Ubicación:</strong> Mendoza, Argentina<br>
+        <strong>Contacto:</strong> contacto@showcase.studio / WhatsApp: +54 261 551-1349</p>
+
+        <h4>2. Propiedad Intelectual</h4>
+        <p>Todos los diseños, componentes, código fuente y elementos gráficos interactivos presentes en este sitio web están protegidos por leyes de propiedad intelectual. Queda prohibida la reproducción total o parcial sin autorización previa por escrito.</p>
+
+        <h4>3. Exención de Responsabilidad</h4>
+        <p>Las demostraciones interactivas (E-commerce, Reservas, Simulador de APIs, Pagos) son réplicas funcionales simuladas creadas para fines demostrativos y de evaluación de experiencia de usuario. No se procesan transacciones financieras reales dentro de este laboratorio.</p>
+
+        <h4>4. Legislación y Jurisdicción</h4>
+        <p>Cualquier controversia relacionada con el uso de este sitio web se regirá por las leyes vigentes de la República Argentina, sometiéndose a la jurisdicción de los tribunales competentes.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Legal Modal: Política de Privacidad -->
+  <div class="legal-modal-overlay" id="modal-privacy-overlay" aria-hidden="true">
+    <div class="legal-modal-card">
+      <div class="legal-modal-header">
+        <div class="legal-badge"><i class="fa-solid fa-user-shield"></i> PRIVACIDAD Y DATOS</div>
+        <button class="modal-close-icon" id="privacy-close-btn" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="legal-modal-body">
+        <h3>Política de Privacidad</h3>
+        <p>Tu privacidad es una prioridad absoluta para Showcase Labs. Esta política detalla qué información recopilamos y cómo la protegemos.</p>
+
+        <h4>1. Recopilación de Datos</h4>
+        <p>No recopilamos información personal de forma pasiva ni vendemos datos a terceros. Los únicos datos recopilados son los que decidís ingresar voluntariamente al solicitar una cotización o enviar un mensaje por WhatsApp (nombre, teléfono y detalles del proyecto solicitado).</p>
+
+        <h4>2. Finalidad del Tratamiento</h4>
+        <p>Los datos ingresados en el cotizador interactivo se utilizan exclusivamente para preparar la propuesta técnica solicitada y entablar comunicación directa contigo.</p>
+
+        <h4>3. Seguridad y Confidencialidad</h4>
+        <p>Implementamos cifrado HTTPS de extremo a extremo y medidas técnicas para prevenir accesos no autorizados o spam mediante sistemas de protección automatizada.</p>
+
+        <h4>4. Derechos del Usuario (ARCO / GDPR)</h4>
+        <p>Tenés derecho a solicitar el acceso, rectificación, cancelación u oposición al tratamiento de tus datos en cualquier momento comunicándote a nuestro canal de soporte.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cookie Consent Banner -->
+  <div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Aviso de cookies">
+    <div class="cookie-content">
+      <div class="cookie-icon"><i class="fa-solid fa-cookie-bite"></i></div>
+      <div class="cookie-text">
+        <strong>Aviso de Cookies y Privacidad</strong>
+        <p>Utilizamos cookies esenciales para recordar tus preferencias (como el modo oscuro) y analítica anónima para mejorar la velocidad y experiencia de uso.</p>
+      </div>
+    </div>
+    <div class="cookie-actions">
+      <button class="btn btn-secondary cookie-btn" id="cookie-reject-btn">Solo Necesarias</button>
+      <button class="btn btn-primary cookie-btn" id="cookie-accept-btn">Aceptar Todas</button>
+    </div>
+  </div>
 
   <!-- Mobile Navigation Drawer -->
   <div class="drawer-backdrop" id="drawer-backdrop"></div>

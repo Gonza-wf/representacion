@@ -12,6 +12,8 @@ import { showToast } from './src/utils/toast.js';
 document.addEventListener('DOMContentLoaded', () => {
   initThemeToggle();
   initQuoteModal();
+  initLegalModals();
+  initCookieConsent();
   initNavbarScroll();
   initScrollProgress();
   initBackToTop();
@@ -564,7 +566,7 @@ function initInteractiveGlow() {
   }, { passive: true });
 }
 
-// --- Interactive Project Quote Modal ---
+// --- Interactive Project Quote Modal with Anti-Spam Protection ---
 function initQuoteModal() {
   const openBtn = document.getElementById('open-quote-modal');
   const overlay = document.getElementById('quote-modal-overlay');
@@ -574,9 +576,13 @@ function initQuoteModal() {
 
   if (!overlay || !form) return;
 
+  let modalOpenedAt = 0;
+  let lastSubmitTime = 0;
+
   function openModal() {
     overlay.classList.add('open');
     document.body.classList.add('drawer-open');
+    modalOpenedAt = Date.now();
   }
 
   function closeModal() {
@@ -609,14 +615,50 @@ function initQuoteModal() {
     });
   });
 
-  // Form submission & WhatsApp redirect
+  // Form submission & WhatsApp redirect with Anti-Spam protection
   form.addEventListener('submit', (e) => {
     e.preventDefault();
+
+    // 1. Anti-Spam Honeypot check
+    const honeypot = document.getElementById('quote-hp');
+    if (honeypot && honeypot.value.trim() !== '') {
+      console.warn('Bot submission blocked via honeypot.');
+      closeModal();
+      return;
+    }
+
+    // 2. Anti-Spam Time check (minimum human interaction time 1000ms)
+    const elapsed = Date.now() - modalOpenedAt;
+    if (elapsed < 1000 && modalOpenedAt > 0) {
+      console.warn('Bot submission blocked via timing threshold.');
+      return;
+    }
+
+    // 3. Rate limiting (minimum 6s between submits)
+    const now = Date.now();
+    if (now - lastSubmitTime < 6000) {
+      if (window.showToast) {
+        window.showToast({
+          title: 'Por favor aguarda',
+          message: 'Espera unos segundos antes de enviar otra consulta.',
+          type: 'warning',
+          duration: 3000
+        });
+      }
+      return;
+    }
+    lastSubmitTime = now;
+
     const activeType = document.querySelector('.quote-type-btn.active');
     const selectedType = activeType ? activeType.dataset.type : 'Desarrollo Web a Medida';
     const name = document.getElementById('quote-name').value.trim();
     const contact = document.getElementById('quote-contact').value.trim();
     const notes = document.getElementById('quote-notes').value.trim();
+
+    // Trigger Analytics Event
+    if (window.trackAnalyticsEvent) {
+      window.trackAnalyticsEvent('conversion', 'quote_submit', selectedType);
+    }
 
     const submitBtn = form.querySelector('.quote-submit-btn');
     const originalText = submitBtn.innerHTML;
@@ -644,6 +686,126 @@ function initQuoteModal() {
       typeBtns.forEach((b, idx) => b.classList.toggle('active', idx === 0));
     }, 700);
   });
+}
+
+// --- Legal & Privacy Modals System ---
+function initLegalModals() {
+  const legalModal = document.getElementById('modal-legal-overlay');
+  const privacyModal = document.getElementById('modal-privacy-overlay');
+  const legalBtn = document.getElementById('link-aviso-legal');
+  const privacyBtn = document.getElementById('link-privacidad');
+  const closeLegal = document.getElementById('legal-close-btn');
+  const closePrivacy = document.getElementById('privacy-close-btn');
+
+  function openLegal() {
+    if (legalModal) {
+      legalModal.classList.add('open');
+      document.body.classList.add('drawer-open');
+    }
+  }
+
+  function closeLegalModal() {
+    if (legalModal) {
+      legalModal.classList.remove('open');
+      document.body.classList.remove('drawer-open');
+    }
+  }
+
+  function openPrivacy() {
+    if (privacyModal) {
+      privacyModal.classList.add('open');
+      document.body.classList.add('drawer-open');
+    }
+  }
+
+  function closePrivacyModal() {
+    if (privacyModal) {
+      privacyModal.classList.remove('open');
+      document.body.classList.remove('drawer-open');
+    }
+  }
+
+  if (legalBtn) legalBtn.addEventListener('click', openLegal);
+  if (closeLegal) closeLegal.addEventListener('click', closeLegalModal);
+  if (legalModal) {
+    legalModal.addEventListener('click', (e) => {
+      if (e.target === legalModal) closeLegalModal();
+    });
+  }
+
+  if (privacyBtn) privacyBtn.addEventListener('click', openPrivacy);
+  if (closePrivacy) closePrivacy.addEventListener('click', closePrivacyModal);
+  if (privacyModal) {
+    privacyModal.addEventListener('click', (e) => {
+      if (e.target === privacyModal) closePrivacyModal();
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeLegalModal();
+      closePrivacyModal();
+    }
+  });
+}
+
+// --- Cookie Consent Banner Management ---
+function initCookieConsent() {
+  const banner = document.getElementById('cookie-banner');
+  const acceptBtn = document.getElementById('cookie-accept-btn');
+  const rejectBtn = document.getElementById('cookie-reject-btn');
+  const cookiePrefBtn = document.getElementById('link-cookies');
+
+  if (!banner) return;
+
+  const currentConsent = localStorage.getItem('cookie_consent');
+
+  if (!currentConsent) {
+    // Show banner smoothly after initial load
+    setTimeout(() => {
+      banner.classList.remove('hidden');
+    }, 1200);
+  } else {
+    banner.classList.add('hidden');
+  }
+
+  if (acceptBtn) {
+    acceptBtn.addEventListener('click', () => {
+      localStorage.setItem('cookie_consent', 'accepted');
+      banner.classList.add('hidden');
+      if (window.showToast) {
+        window.showToast({
+          title: 'Preferencias Guardadas',
+          message: 'Has aceptado las cookies de navegación y analítica anónima.',
+          type: 'success',
+          duration: 3000,
+          icon: 'fa-solid fa-cookie-bite'
+        });
+      }
+    });
+  }
+
+  if (rejectBtn) {
+    rejectBtn.addEventListener('click', () => {
+      localStorage.setItem('cookie_consent', 'essential');
+      banner.classList.add('hidden');
+      if (window.showToast) {
+        window.showToast({
+          title: 'Preferencias Guardadas',
+          message: 'Solo se utilizarán las cookies técnicas esenciales.',
+          type: 'info',
+          duration: 3000,
+          icon: 'fa-solid fa-shield-halved'
+        });
+      }
+    });
+  }
+
+  if (cookiePrefBtn) {
+    cookiePrefBtn.addEventListener('click', () => {
+      banner.classList.remove('hidden');
+    });
+  }
 }
 
 
