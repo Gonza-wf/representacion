@@ -7,12 +7,10 @@ import { initBooking } from './src/sections/booking/index.js';
 import { initAdvanced } from './src/sections/advanced/index.js';
 import { initApi } from './src/sections/api/index.js';
 import { initMapa } from './src/sections/mapa/index.js';
-import { playSound, toggleSound, isSoundEnabled } from './src/utils/audio.js';
 import { showToast } from './src/utils/toast.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   initThemeToggle();
-  initSoundSystem();
   initQuoteModal();
   initNavbarScroll();
   initScrollProgress();
@@ -49,7 +47,6 @@ function initThemeToggle() {
   }
 
   toggleBtn.addEventListener('click', () => {
-    playSound('toggle');
     if (body.classList.contains('light-mode')) {
       body.classList.replace('light-mode', 'dark-mode');
       icon.classList.replace('fa-moon', 'fa-sun');
@@ -70,43 +67,6 @@ function initThemeToggle() {
   }
 }
 
-// --- Web Audio Sound System & Toggles ---
-function initSoundSystem() {
-  const soundBtn = document.getElementById('sound-toggle');
-  const drawerSoundBtn = document.getElementById('drawer-sound-toggle');
-
-  function updateSoundUI(enabled) {
-    if (soundBtn) {
-      soundBtn.title = enabled ? 'Sonidos: Activados' : 'Sonidos: Desactivados';
-      soundBtn.innerHTML = enabled
-        ? '<i class="fa-solid fa-volume-high"></i>'
-        : '<i class="fa-solid fa-volume-xmark"></i>';
-      soundBtn.classList.toggle('sound-active', enabled);
-    }
-    if (drawerSoundBtn) {
-      drawerSoundBtn.innerHTML = enabled
-        ? '<i class="fa-solid fa-volume-high"></i> Sonidos: On'
-        : '<i class="fa-solid fa-volume-xmark"></i> Sonidos: Off';
-      drawerSoundBtn.classList.toggle('sound-active', enabled);
-    }
-  }
-
-  // Initial UI state
-  updateSoundUI(isSoundEnabled());
-
-  function handleToggle() {
-    const newState = toggleSound();
-    updateSoundUI(newState);
-  }
-
-  if (soundBtn) {
-    soundBtn.addEventListener('click', handleToggle);
-  }
-  if (drawerSoundBtn) {
-    drawerSoundBtn.addEventListener('click', handleToggle);
-  }
-}
-
 // --- Mobile Drawer Navigation ---
 function initMobileDrawer() {
   const toggleBtn = document.getElementById('mobile-menu-toggle');
@@ -123,7 +83,6 @@ function initMobileDrawer() {
     backdrop.classList.add('open');
     drawer.setAttribute('aria-hidden', 'false');
     document.body.classList.add('drawer-open');
-    playSound('tab');
   }
 
   function closeDrawer() {
@@ -131,7 +90,6 @@ function initMobileDrawer() {
     backdrop.classList.remove('open');
     drawer.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('drawer-open');
-    playSound('tab');
   }
 
   toggleBtn.addEventListener('click', openDrawer);
@@ -175,7 +133,6 @@ function initDeviceSimulator() {
 
   buttons.forEach(btn => {
     btn.addEventListener('click', () => {
-      playSound('click');
       buttons.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       const device = btn.dataset.device;
@@ -227,8 +184,6 @@ export function switchComponent(targetId, shouldScroll = false) {
   if (counter) {
     counter.textContent = `${currentCompIndex + 1} / ${COMPONENT_ORDER.length}`;
   }
-
-  playSound('tab');
 
   // Trigger resize event so Chart.js and Leaflet re-render crisp
   window.dispatchEvent(new Event('resize'));
@@ -329,7 +284,6 @@ export function registerComponent(config) {
 
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      playSound('tab');
       tabs.forEach(t => t.classList.remove('active'));
       contents.forEach(c => c.classList.remove('active'));
       tab.classList.add('active');
@@ -447,7 +401,6 @@ function initBackToTop() {
   }, { passive: true });
 
   btn.addEventListener('click', () => {
-    playSound('click');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
@@ -515,13 +468,11 @@ function initQuoteModal() {
   function openModal() {
     overlay.classList.add('open');
     document.body.classList.add('drawer-open');
-    playSound('click');
   }
 
   function closeModal() {
     overlay.classList.remove('open');
     document.body.classList.remove('drawer-open');
-    playSound('click');
   }
 
   if (openBtn) openBtn.addEventListener('click', openModal);
@@ -546,7 +497,6 @@ function initQuoteModal() {
     btn.addEventListener('click', () => {
       typeBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      playSound('click');
     });
   });
 
@@ -558,8 +508,6 @@ function initQuoteModal() {
     const name = document.getElementById('quote-name').value.trim();
     const contact = document.getElementById('quote-contact').value.trim();
     const notes = document.getElementById('quote-notes').value.trim();
-
-    playSound('success');
 
     const submitBtn = form.querySelector('.quote-submit-btn');
     const originalText = submitBtn.innerHTML;

@@ -1,9 +1,7 @@
 // ─────────────────────────────────────────────
 // Premium Toast Notification System
-// Sleek, accessible, responsive & Web Audio integrated
+// Sleek, accessible and responsive
 // ─────────────────────────────────────────────
-
-import { playSound } from './audio.js';
 
 let toastContainer = null;
 
@@ -46,8 +44,6 @@ export function showToast({
   icon = null
 } = {}) {
   const container = ensureToastContainer();
-  const soundType = type === 'error' ? 'click' : 'success';
-  playSound(soundType);
 
   const toast = document.createElement('div');
   toast.className = `g-toast g-toast-${type}`;
