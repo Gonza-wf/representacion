@@ -467,20 +467,6 @@ body.modal-open {
   max-width: 780px;
 }
 
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: var(--primary-light);
-  color: var(--primary-color);
-  padding: 0.4rem 1rem;
-  border-radius: 100px;
-  font-size: 0.875rem;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-  border: 1px solid rgba(59, 130, 246, 0.2);
-}
-
 .hero-content h1 {
   font-size: clamp(2.5rem, 6vw, 4.5rem);
   font-weight: 800;
@@ -2542,11 +2528,6 @@ body.dark-mode .component-wrapper:hover {
   }
   .scroll-indicator {
     display: none;
-  }
-  .hero-badge {
-    font-size: 0.82rem;
-    padding: 0.4rem 0.95rem;
-    margin-bottom: 1.5rem;
   }
   .hero-content h1 {
     font-size: clamp(2rem, 8vw, 2.75rem);
