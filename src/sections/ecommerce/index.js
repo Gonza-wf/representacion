@@ -377,7 +377,11 @@ function onMount(container) {
       var ratingEl = document.createElement('div');
       ratingEl.className = 'ec-card-rating';
       var stars = '';
-      for (var s = 0; s < 5; s++) { stars += s < Math.round(p.rating) ? '★' : '☆'; }
+      for (var s = 0; s < 5; s++) {
+        stars += s < Math.round(p.rating)
+          ? '<i class="fa-solid fa-star"></i>'
+          : '<i class="fa-regular fa-star"></i>';
+      }
       ratingEl.innerHTML = stars + '<span>(' + p.reviews + ')</span>';
 
       var footer = document.createElement('div');
@@ -387,12 +391,12 @@ function onMount(container) {
       priceEl.textContent = '$' + p.price;
       var addBtn = document.createElement('button');
       addBtn.className = 'ec-add-btn';
-      addBtn.textContent = '+ Carrito';
+      addBtn.innerHTML = '<i class="fa-solid fa-plus"></i> Carrito';
       addBtn.addEventListener('click', function(e) {
         e.stopPropagation();
         addToCart(p, 1);
-        addBtn.textContent = '✓ Agregado';
-        setTimeout(function() { addBtn.textContent = '+ Carrito'; }, 1000);
+        addBtn.innerHTML = '<i class="fa-solid fa-check"></i> Agregado';
+        setTimeout(function() { addBtn.innerHTML = '<i class="fa-solid fa-plus"></i> Carrito'; }, 1000);
       });
       footer.appendChild(priceEl);
       footer.appendChild(addBtn);
@@ -580,10 +584,11 @@ function onMount(container) {
     closeCart();
     if (window.showToast) {
       window.showToast({
-        title: '¡Compra Simulada Exitosa! 🛍️',
+        title: '¡Compra Simulada Exitosa!',
         message: 'Tu pedido fue procesado correctamente. ¡Gracias por probar el e-commerce!',
         type: 'success',
-        duration: 4000
+        duration: 4000,
+        icon: 'fa-solid fa-bag-shopping'
       });
     }
   });
@@ -601,7 +606,11 @@ function onMount(container) {
     productOverlay.querySelector('#modal-price').textContent = '$' + p.price;
     productOverlay.querySelector('#modal-qty').textContent = '1';
     var stars = '';
-    for (var s = 0; s < 5; s++) { stars += s < Math.round(p.rating) ? '★' : '☆'; }
+    for (var s = 0; s < 5; s++) {
+      stars += s < Math.round(p.rating)
+        ? '<i class="fa-solid fa-star"></i>'
+        : '<i class="fa-regular fa-star"></i>';
+    }
     productOverlay.querySelector('#modal-stars').innerHTML = stars + ' <small style="color:var(--text-muted)">(' + p.reviews + ' reseñas)</small>';
     overlay.classList.add('open');
     document.body.classList.add('modal-open');

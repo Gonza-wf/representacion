@@ -36,7 +36,7 @@ const html = `
   <div class="dash-main">
     <div class="dash-chart-card">
       <div class="dash-section-title">
-        <span>📈 Ventas Semanales</span>
+        <span><i class="fa-solid fa-chart-line"></i> Ventas Semanales</span>
         <div class="chart-legend">
           <span class="legend-dot" style="background:#3b82f6"></span> Ingresos
           <span class="legend-dot" style="background:#8b5cf6;margin-left:8px"></span> Órdenes
@@ -48,7 +48,7 @@ const html = `
     </div>
 
     <div class="dash-table-card">
-      <div class="dash-section-title"><span>🛒 Últimos Pedidos</span></div>
+      <div class="dash-section-title"><span><i class="fa-solid fa-bag-shopping"></i> Últimos Pedidos</span></div>
       <div class="table-scroll">
         <table class="dash-table" id="orders-table">
           <thead>
@@ -69,7 +69,7 @@ const html = `
   <!-- Stock Panel -->
   <div class="dash-stock-card">
     <div class="dash-section-title">
-      <span>📦 Inventario & Stock en Tiempo Real</span>
+      <span><i class="fa-solid fa-boxes-stacked"></i> Inventario & Stock en Tiempo Real</span>
       <div class="stock-filters">
         <button class="stock-filter active" data-filter="todos">Todos</button>
         <button class="stock-filter" data-filter="critico">Crítico</button>
@@ -255,10 +255,10 @@ const explanation = `
 
 // helpers — note: these are top-level vars, not inside onMount, so string concat rule is relaxed
 var KPI_DATA = [
-  { label:'Usuarios Activos', value:'2,450', trend:'+12%', dir:'up',   icon:'👥', color:'#3b82f6' },
-  { label:'Ingresos Mensuales', value:'$34,500', trend:'+8%', dir:'up', icon:'💰', color:'#8b5cf6' },
-  { label:'Órdenes del Mes',  value:'843',   trend:'+5%',  dir:'up',   icon:'🛒', color:'#10b981' },
-  { label:'Stock Crítico',    value:'3',     trend:'¡Urgente!', dir:'down', icon:'⚠️', color:'#ef4444' }
+  { label:'Usuarios Activos', value:'2,450', trend:'+12%', dir:'up',   icon:'<i class="fa-solid fa-users"></i>', color:'#3b82f6' },
+  { label:'Ingresos Mensuales', value:'$34,500', trend:'+8%', dir:'up', icon:'<i class="fa-solid fa-circle-dollar-sign"></i>', color:'#8b5cf6' },
+  { label:'Órdenes del Mes',  value:'843',   trend:'+5%',  dir:'up',   icon:'<i class="fa-solid fa-bag-shopping"></i>', color:'#10b981' },
+  { label:'Stock Crítico',    value:'3',     trend:'¡Urgente!', dir:'down', icon:'<i class="fa-solid fa-triangle-exclamation"></i>', color:'#ef4444' }
 ];
 
 function onMount(container) {
@@ -293,7 +293,7 @@ function onMount(container) {
     var ico = document.createElement('div');
     ico.className = 'kpi-icon';
     ico.style.background = k.color + '22';
-    ico.textContent = k.icon;
+    ico.innerHTML = k.icon;
     header.appendChild(label);
     header.appendChild(ico);
 

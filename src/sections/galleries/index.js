@@ -37,8 +37,8 @@ var BEFORE_AFTER_PRESETS = {
     afterSrc:  'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=1200&q=80',
     beforeFilter: 'grayscale(0.85) contrast(0.8) brightness(0.6) blur(0.5px)',
     afterFilter:  'saturate(1.4) contrast(1.12) brightness(1.06)',
-    beforeLabel: '⚠️ ANTES: Pintura rayada y opaca',
-    afterLabel:  '✨ DESPUÉS: Vitrificado cerámico'
+    beforeLabel: 'ANTES: Pintura rayada y opaca',
+    afterLabel:  'DESPUÉS: Vitrificado cerámico'
   },
   interior: {
     label: 'Reforma de Interiores',
@@ -46,8 +46,8 @@ var BEFORE_AFTER_PRESETS = {
     afterSrc:  'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80',
     beforeFilter: 'grayscale(0.9) brightness(0.52) contrast(0.88)',
     afterFilter:  'saturate(1.28) brightness(1.05) contrast(1.05)',
-    beforeLabel:  '⚠️ ANTES: Sin iluminación ni vida',
-    afterLabel:   '✨ DESPUÉS: Moderno y luminoso'
+    beforeLabel:  'ANTES: Sin iluminación ni vida',
+    afterLabel:   'DESPUÉS: Moderno y luminoso'
   },
   photo: {
     label: 'Edición Fotográfica',
@@ -55,8 +55,8 @@ var BEFORE_AFTER_PRESETS = {
     afterSrc:  'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80',
     beforeFilter: 'grayscale(1) brightness(0.6) contrast(0.8)',
     afterFilter:  'saturate(1.5) contrast(1.15) brightness(1.1)',
-    beforeLabel:  '⚠️ ANTES: Archivo RAW sin procesar',
-    afterLabel:   '✨ DESPUÉS: Color grading profesional'
+    beforeLabel:  'ANTES: Archivo RAW sin procesar',
+    afterLabel:   'DESPUÉS: Color grading profesional'
   }
 };
 
@@ -66,13 +66,13 @@ const html = `
   <!-- Section 1: Before / After -->
   <div class="gal-section">
     <div class="gal-sec-header">
-      <div class="gal-sec-title"><span class="gal-sec-icon">🔀</span> Comparador Antes / Después</div>
+      <div class="gal-sec-title"><span class="gal-sec-icon"><i class="fa-solid fa-code-compare"></i></span> Comparador Antes / Después</div>
       <p class="gal-sec-desc">Arrastrá el control para comparar. Seleccioná un preset de industria.</p>
     </div>
     <div class="ba-presets" id="ba-presets">
-      <button class="ba-chip active" data-preset="detailing">🚗 Detailing</button>
-      <button class="ba-chip" data-preset="interior">🏠 Reforma</button>
-      <button class="ba-chip" data-preset="photo">📷 Fotografía</button>
+      <button class="ba-chip active" data-preset="detailing"><i class="fa-solid fa-car"></i> Detailing</button>
+      <button class="ba-chip" data-preset="interior"><i class="fa-solid fa-house"></i> Reforma</button>
+      <button class="ba-chip" data-preset="photo"><i class="fa-solid fa-camera"></i> Fotografía</button>
     </div>
     <div class="ba-container" id="ba-container">
       <div class="ba-before" id="ba-before">
@@ -95,7 +95,7 @@ const html = `
   <!-- Section 2: Auto Carousel -->
   <div class="gal-section">
     <div class="gal-sec-header">
-      <div class="gal-sec-title"><span class="gal-sec-icon">🎠</span> Carrusel Automático</div>
+      <div class="gal-sec-title"><span class="gal-sec-icon"><i class="fa-solid fa-play"></i></span> Carrusel Automático</div>
       <p class="gal-sec-desc">Avanza solo cada 3 segundos. Hacé hover para pausarlo.</p>
     </div>
     <div class="carousel-wrap" id="carousel-wrap">
@@ -108,7 +108,7 @@ const html = `
   <!-- Section 3: Manual Slider -->
   <div class="gal-section">
     <div class="gal-sec-header">
-      <div class="gal-sec-title"><span class="gal-sec-icon">🖱️</span> Slider Manual</div>
+      <div class="gal-sec-title"><span class="gal-sec-icon"><i class="fa-solid fa-sliders"></i></span> Slider Manual</div>
       <p class="gal-sec-desc">Navegá con flechas o deslizá en pantallas táctiles.</p>
     </div>
     <div class="slider-wrap" id="slider-wrap">
@@ -128,7 +128,7 @@ const html = `
   <!-- Section 4: Masonry + Lightbox -->
   <div class="gal-section">
     <div class="gal-sec-header">
-      <div class="gal-sec-title"><span class="gal-sec-icon">🖼️</span> Galería Masonry + Lightbox</div>
+      <div class="gal-sec-title"><span class="gal-sec-icon"><i class="fa-solid fa-table-cells"></i></span> Galería Masonry + Lightbox</div>
       <p class="gal-sec-desc">Hacé clic en cualquier imagen para abrirla en pantalla completa.</p>
     </div>
     <div class="masonry-grid" id="masonry-grid"></div>

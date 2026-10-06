@@ -9,8 +9,8 @@ const html = `
 
   <!-- Sub-tabs -->
   <div class="form-tabs">
-    <button class="form-tab active" data-tab="auth">🔐 Login / Registro</button>
-    <button class="form-tab" data-tab="multi">📋 Formulario Multi-Step</button>
+    <button class="form-tab active" data-tab="auth"><i class="fa-solid fa-lock"></i> Login / Registro</button>
+    <button class="form-tab" data-tab="multi"><i class="fa-solid fa-list-check"></i> Formulario Multi-Step</button>
   </div>
 
   <!-- AUTH panel -->
@@ -50,7 +50,7 @@ const html = `
 
       <!-- LOGIN SUCCESS -->
       <div class="auth-success" id="login-success" style="display:none">
-        <div class="success-avatar" id="login-avatar">👤</div>
+        <div class="success-avatar" id="login-avatar"><i class="fa-solid fa-user-check"></i></div>
         <h3>¡Bienvenido de vuelta!</h3>
         <p id="login-welcome-msg"></p>
         <button class="btn btn-secondary" id="login-logout">Cerrar Sesión</button>
@@ -92,7 +92,7 @@ const html = `
 
       <!-- REGISTER SUCCESS -->
       <div class="auth-success" id="register-success" style="display:none">
-        <div class="success-avatar">🎉</div>
+        <div class="success-avatar"><i class="fa-solid fa-circle-check"></i></div>
         <h3>¡Cuenta creada!</h3>
         <p id="reg-welcome-msg"></p>
         <button class="btn btn-secondary" id="reg-back">Iniciar Sesión</button>
@@ -120,7 +120,7 @@ const html = `
         <div class="field-wrap"><input type="text" id="ms-name" placeholder="Nombre completo"><span class="field-err" id="ms-name-err"></span></div>
         <div class="field-wrap"><input type="email" id="ms-email" placeholder="Email profesional"><span class="field-err" id="ms-email-err"></span></div>
         <div class="field-wrap"><input type="tel" id="ms-phone" placeholder="Teléfono"><span class="field-err" id="ms-phone-err"></span></div>
-        <button class="btn btn-primary ms-next" id="ms-next1">Siguiente →</button>
+        <button class="btn btn-primary ms-next" id="ms-next1">Siguiente <i class="fa-solid fa-arrow-right"></i></button>
       </div>
 
       <!-- Step 2 -->
@@ -140,8 +140,8 @@ const html = `
           <span class="char-counter" id="ms-counter">0/200</span>
         </div>
         <div class="ms-btn-row">
-          <button class="btn btn-secondary" id="ms-back2">← Volver</button>
-          <button class="btn btn-primary" id="ms-next2">Siguiente →</button>
+          <button class="btn btn-secondary" id="ms-back2"><i class="fa-solid fa-arrow-left"></i> Volver</button>
+          <button class="btn btn-primary" id="ms-next2">Siguiente <i class="fa-solid fa-arrow-right"></i></button>
         </div>
       </div>
 
@@ -150,7 +150,7 @@ const html = `
         <h3>Revisá tu información</h3>
         <div class="ms-summary" id="ms-summary"></div>
         <div class="ms-btn-row">
-          <button class="btn btn-secondary" id="ms-back3">← Volver</button>
+          <button class="btn btn-secondary" id="ms-back3"><i class="fa-solid fa-arrow-left"></i> Volver</button>
           <button class="btn btn-primary" id="ms-send"><i class="fa-solid fa-paper-plane"></i> Enviar</button>
         </div>
       </div>
@@ -158,7 +158,7 @@ const html = `
       <!-- Multi success -->
       <div class="ms-step" id="ms-success" style="display:none">
         <div class="ms-success-inner">
-          <div class="ms-check-anim">✅</div>
+          <div class="ms-check-anim"><i class="fa-solid fa-circle-check"></i></div>
           <h3>¡Formulario enviado!</h3>
           <p>Nos contactaremos pronto.</p>
           <button class="btn btn-secondary" id="ms-reset">Empezar de nuevo</button>

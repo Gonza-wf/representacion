@@ -5,12 +5,12 @@ import { registerComponent } from '../../../main.js';
 // ─────────────────────────────────────────────
 
 var SERVICES = [
-  { id: 'corte', icon: '💇', name: 'Corte de Cabello', dur: '45 min', price: 2500 },
-  { id: 'barba', icon: '🧔', name: 'Corte + Barba',    dur: '60 min', price: 3500 },
-  { id: 'color', icon: '🎨', name: 'Coloración',       dur: '90 min', price: 6000 },
-  { id: 'trat',  icon: '💆', name: 'Tratamiento Capilar', dur: '60 min', price: 4000 },
-  { id: 'ker',   icon: '✨', name: 'Keratina',          dur: '120 min', price: 8000 },
-  { id: 'fle',   icon: '✂️', name: 'Flequillo',         dur: '20 min', price: 1200 }
+  { id: 'corte', icon: '<i class="fa-solid fa-scissors"></i>',      name: 'Corte de Cabello',    dur: '45 min',  price: 2500 },
+  { id: 'barba', icon: '<i class="fa-solid fa-person"></i>',        name: 'Corte + Barba',       dur: '60 min',  price: 3500 },
+  { id: 'color', icon: '<i class="fa-solid fa-palette"></i>',       name: 'Coloración',          dur: '90 min',  price: 6000 },
+  { id: 'trat',  icon: '<i class="fa-solid fa-spa"></i>',           name: 'Tratamiento Capilar', dur: '60 min',  price: 4000 },
+  { id: 'ker',   icon: '<i class="fa-solid fa-wand-sparkles"></i>', name: 'Keratina',            dur: '120 min', price: 8000 },
+  { id: 'fle',   icon: '<i class="fa-solid fa-cut"></i>',           name: 'Flequillo',           dur: '20 min',  price: 1200 }
 ];
 
 var DAYS_SHORT = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
@@ -44,14 +44,14 @@ const html = `
       <div class="bk-step" id="bk-s2">
         <h3 class="step-title">Seleccioná el día</h3>
         <div class="date-scroll" id="date-scroll"></div>
-        <button class="btn btn-secondary btn-back" id="bk-back2">← Volver</button>
+        <button class="btn btn-secondary btn-back" id="bk-back2"><i class="fa-solid fa-arrow-left"></i> Volver</button>
       </div>
 
       <!-- STEP 3: Time -->
       <div class="bk-step" id="bk-s3">
         <h3 class="step-title">Elegí el horario</h3>
         <div class="time-grid" id="time-grid"></div>
-        <button class="btn btn-secondary btn-back" id="bk-back3">← Volver</button>
+        <button class="btn btn-secondary btn-back" id="bk-back3"><i class="fa-solid fa-arrow-left"></i> Volver</button>
       </div>
 
       <!-- STEP 4: Personal data -->
@@ -65,13 +65,13 @@ const html = `
         <button class="btn btn-primary btn-confirm" id="bk-confirm" disabled>
           <i class="fa-solid fa-calendar-check"></i> Confirmar Turno
         </button>
-        <button class="btn btn-secondary btn-back" id="bk-back4">← Volver</button>
+        <button class="btn btn-secondary btn-back" id="bk-back4"><i class="fa-solid fa-arrow-left"></i> Volver</button>
       </div>
     </div>
 
     <!-- Success -->
     <div class="bk-success" id="bk-success" style="display:none">
-      <div class="success-icon">✅</div>
+      <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
       <h3>¡Turno Confirmado!</h3>
       <div class="bk-success-detail" id="bk-success-detail"></div>
       <p class="bk-wa-msg"><i class="fa-brands fa-whatsapp"></i> Recibirás confirmación por WhatsApp</p>
@@ -269,7 +269,7 @@ function onMount(container) {
     card.className = 'service-card';
     var icon = document.createElement('div');
     icon.className = 'svc-icon';
-    icon.textContent = svc.icon;
+    icon.innerHTML = svc.icon;
     var name = document.createElement('div');
     name.className = 'svc-name';
     name.textContent = svc.name;

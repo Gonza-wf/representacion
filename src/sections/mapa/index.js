@@ -25,9 +25,9 @@ const html = `
     <!-- Map container -->
     <div class="mapa-left">
       <div class="mapa-controls">
-        <button class="map-ctrl-btn active" id="map-style-streets">🗺️ Calles</button>
-        <button class="map-ctrl-btn" id="map-style-dark">🌙 Oscuro</button>
-        <button class="map-ctrl-btn" id="map-center-btn">📍 Centrar</button>
+        <button class="map-ctrl-btn active" id="map-style-streets"><i class="fa-solid fa-map"></i> Calles</button>
+        <button class="map-ctrl-btn" id="map-style-dark"><i class="fa-solid fa-moon"></i> Oscuro</button>
+        <button class="map-ctrl-btn" id="map-center-btn"><i class="fa-solid fa-crosshairs"></i> Centrar</button>
         <button class="map-ctrl-btn map-lock-btn" id="map-lock-btn" style="display:none">
           <i class="fa-solid fa-lock"></i> Bloquear (deslizar pág.)
         </button>
