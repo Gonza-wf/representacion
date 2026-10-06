@@ -17,11 +17,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavbarScroll();
   initScrollProgress();
   initBackToTop();
-  initHeroStatsCounters();
   initInteractiveGlow();
   initDeviceSimulator();
   initMobileDrawer();
   initShowcase();
+  initShowcaseTabs();
   initTechFooter();
 });
 
@@ -139,8 +139,13 @@ function initMobileDrawer() {
   if (backdrop) backdrop.addEventListener('click', closeDrawer);
 
   drawerLinks.forEach(link => {
-    link.addEventListener('click', () => {
+    link.addEventListener('click', (e) => {
+      const compId = link.dataset.comp;
       closeDrawer();
+      if (compId) {
+        e.preventDefault();
+        switchComponent(compId, true);
+      }
     });
   });
 
@@ -180,6 +185,89 @@ function initDeviceSimulator() {
   });
 }
 
+// --- Component Switcher System 2.0 ---
+export const COMPONENT_ORDER = [
+  'ecommerce',
+  'dashboard',
+  'booking',
+  'galleries',
+  'forms',
+  'advanced-comps',
+  'api',
+  'mapa'
+];
+
+let currentCompIndex = 0;
+
+export function switchComponent(targetId, shouldScroll = false) {
+  const index = COMPONENT_ORDER.indexOf(targetId);
+  if (index === -1) return;
+  currentCompIndex = index;
+
+  // Update nav tabs
+  const tabBtns = document.querySelectorAll('.showcase-tab-btn');
+  tabBtns.forEach(btn => {
+    const isActive = btn.dataset.comp === targetId;
+    btn.classList.toggle('active', isActive);
+    btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    if (isActive) {
+      btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+  });
+
+  // Update component wrappers
+  const wrappers = document.querySelectorAll('.component-wrapper');
+  wrappers.forEach(w => {
+    const isTarget = w.id === `comp-${targetId}`;
+    w.classList.toggle('active', isTarget);
+  });
+
+  // Update stepper counter
+  const counter = document.getElementById('showcase-tab-counter');
+  if (counter) {
+    counter.textContent = `${currentCompIndex + 1} / ${COMPONENT_ORDER.length}`;
+  }
+
+  playSound('tab');
+
+  // Trigger resize event so Chart.js and Leaflet re-render crisp
+  window.dispatchEvent(new Event('resize'));
+
+  if (shouldScroll) {
+    const showcaseSection = document.getElementById('components');
+    if (showcaseSection) {
+      const topOffset = showcaseSection.getBoundingClientRect().top + window.scrollY - 75;
+      window.scrollTo({ top: topOffset, behavior: 'smooth' });
+    }
+  }
+}
+
+function initShowcaseTabs() {
+  const tabBtns = document.querySelectorAll('.showcase-tab-btn');
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      switchComponent(btn.dataset.comp);
+    });
+  });
+
+  const prevBtn = document.getElementById('showcase-prev-btn');
+  const nextBtn = document.getElementById('showcase-next-btn');
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      const prevIndex = (currentCompIndex - 1 + COMPONENT_ORDER.length) % COMPONENT_ORDER.length;
+      switchComponent(COMPONENT_ORDER[prevIndex]);
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      const nextIndex = (currentCompIndex + 1) % COMPONENT_ORDER.length;
+      switchComponent(COMPONENT_ORDER[nextIndex]);
+    });
+  }
+}
+
 // --- Component Wrapper Generator ---
 /**
  * Inyecta un componente en el DOM envuelto con pestañas de Demo, Código y Explicación.
@@ -191,6 +279,11 @@ export function registerComponent(config) {
   const wrapper = document.createElement('div');
   wrapper.className = 'component-wrapper';
   wrapper.id = `comp-${config.id}`;
+
+  // First component active by default
+  if (config.id === COMPONENT_ORDER[0]) {
+    wrapper.classList.add('active');
+  }
 
   wrapper.innerHTML = `
     <div class="component-header">
@@ -214,6 +307,12 @@ export function registerComponent(config) {
         ${config.html}
       </div>
       <div id="code-${config.id}" class="tab-content code-content">
+        <div class="code-toolbar">
+          <span class="code-badge"><i class="fa-brands fa-square-js"></i> JavaScript ES6+</span>
+          <button class="copy-code-btn" type="button" aria-label="Copiar código al portapapeles">
+            <i class="fa-regular fa-copy"></i> Copiar Código
+          </button>
+        </div>
         <pre><code>${escapeHTML(config.code)}</code></pre>
       </div>
       <div id="exp-${config.id}" class="tab-content exp-content">
@@ -237,6 +336,32 @@ export function registerComponent(config) {
       wrapper.querySelector(`#${tab.dataset.target}`).classList.add('active');
     });
   });
+
+  // Copy code handler
+  const copyBtn = wrapper.querySelector('.copy-code-btn');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(config.code).then(() => {
+        copyBtn.classList.add('copied');
+        copyBtn.innerHTML = '<i class="fa-solid fa-check"></i> ¡Copiado!';
+        if (window.showToast) {
+          window.showToast({
+            title: 'Código Copiado',
+            message: `Código de ${config.title} copiado al portapapeles.`,
+            type: 'success',
+            duration: 2500,
+            icon: 'fa-regular fa-copy'
+          });
+        }
+        setTimeout(() => {
+          copyBtn.classList.remove('copied');
+          copyBtn.innerHTML = '<i class="fa-regular fa-copy"></i> Copiar Código';
+        }, 2000);
+      }).catch(() => {
+        copyBtn.innerHTML = '<i class="fa-solid fa-check"></i> Copiado';
+      });
+    });
+  }
 
   // Mount component JS
   if (config.onMount) {

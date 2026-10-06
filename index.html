@@ -77,15 +77,14 @@
     <div class="hero-content">
       <div class="hero-badge animate-up">
         <span class="pulse-dot"></span>
-        <i class="fa-solid fa-flask"></i> Laboratorio de Componentes Interactivos
+        <i class="fa-solid fa-bolt"></i> Showcase 2.0 • Laboratorio Interactivo
       </div>
       <h1 class="animate-up delay-1">
         Cada componente es<br>
         <span class="text-gradient shimmer-text">una mini aplicación.</span>
       </h1>
       <p class="animate-up delay-2">
-        Explora demos funcionales de E-commerce, Dashboards, Reservas, Formularios y más.
-        Hecho para demostrar código real, limpio, interactivo y escalable.
+        Demos funcionales de alto nivel construidas con Vanilla JS. Cada módulo es una mini-aplicación interactiva real, sin dependencias pesadas ni relleno.
       </p>
       <div class="hero-buttons animate-up delay-3">
         <a href="#components" class="btn btn-primary btn-shine">
@@ -107,32 +106,21 @@
     </div>
   </header>
 
-  <!-- Empresas que cubre -->
-  <section class="covered-section">
-    <div class="container">
-      <p class="covered-label">Componentes aplicables a</p>
-      <div class="covered-grid">
-        <div class="covered-item"><i class="fa-solid fa-cart-shopping"></i><span>E-commerce</span></div>
-        <div class="covered-item"><i class="fa-solid fa-wrench"></i><span>Talleres</span></div>
-        <div class="covered-item"><i class="fa-solid fa-utensils"></i><span>Restaurantes</span></div>
-        <div class="covered-item"><i class="fa-solid fa-bed"></i><span>Hoteles</span></div>
-        <div class="covered-item"><i class="fa-solid fa-building"></i><span>Empresas</span></div>
-        <div class="covered-item"><i class="fa-solid fa-stethoscope"></i><span>Clínicas</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Main Showcase Container -->
+  <!-- Main Showcase Studio 2.0 Container -->
   <main id="components" class="showcase-container">
 
-    <!-- Controls Header -->
+    <!-- Controls Header 2.0 -->
     <div class="showcase-controls">
       <div class="controls-left">
-        <h2>Catálogo de Componentes</h2>
-        <p>Cada sección tiene: <strong>Demo</strong>, <strong>Código</strong> e <strong>Información</strong>.</p>
+        <div class="showcase-studio-badge">
+          <span class="pulse-dot"></span>
+          <span>STUDIO 2.0</span>
+        </div>
+        <h2>Explorador de Componentes</h2>
+        <p>Seleccioná una mini-aplicación interactiva para probarla en vivo con su código e información técnica.</p>
       </div>
       <div class="controls-right">
-        <span class="simulator-label"><i class="fa-solid fa-display"></i> Vista previa:</span>
+        <span class="simulator-label"><i class="fa-solid fa-display"></i> Dispositivo:</span>
         <div class="device-toggles">
           <button class="device-btn active" data-device="desktop" title="Desktop (100%)">
             <i class="fa-solid fa-desktop"></i>
@@ -147,6 +135,46 @@
             <i class="fa-solid fa-mobile-screen"></i>
           </button>
         </div>
+      </div>
+    </div>
+
+    <!-- Futuristic Component Tabs Dock -->
+    <div class="showcase-tabs-nav">
+      <div class="showcase-tabs-track" id="showcase-tabs-track" role="tablist" aria-label="Componentes del Showcase">
+        <button class="showcase-tab-btn active" data-comp="ecommerce" role="tab" aria-selected="true">
+          <i class="fa-solid fa-store"></i> <span>E-commerce</span>
+        </button>
+        <button class="showcase-tab-btn" data-comp="dashboard" role="tab" aria-selected="false">
+          <i class="fa-solid fa-chart-line"></i> <span>Dashboard</span>
+        </button>
+        <button class="showcase-tab-btn" data-comp="booking" role="tab" aria-selected="false">
+          <i class="fa-regular fa-calendar-check"></i> <span>Reservas</span>
+        </button>
+        <button class="showcase-tab-btn" data-comp="galleries" role="tab" aria-selected="false">
+          <i class="fa-solid fa-images"></i> <span>Galerías</span>
+        </button>
+        <button class="showcase-tab-btn" data-comp="forms" role="tab" aria-selected="false">
+          <i class="fa-solid fa-file-lines"></i> <span>Formularios</span>
+        </button>
+        <button class="showcase-tab-btn" data-comp="advanced-comps" role="tab" aria-selected="false">
+          <i class="fa-solid fa-wand-magic-sparkles"></i> <span>Kanban</span>
+        </button>
+        <button class="showcase-tab-btn" data-comp="api" role="tab" aria-selected="false">
+          <i class="fa-solid fa-satellite-dish"></i> <span>API REST</span>
+        </button>
+        <button class="showcase-tab-btn" data-comp="mapa" role="tab" aria-selected="false">
+          <i class="fa-solid fa-map-location-dot"></i> <span>Mapa</span>
+        </button>
+      </div>
+
+      <div class="showcase-stepper">
+        <button id="showcase-prev-btn" class="stepper-arrow-btn" aria-label="Componente anterior" title="Anterior">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <span id="showcase-tab-counter" class="stepper-counter">1 / 8</span>
+        <button id="showcase-next-btn" class="stepper-arrow-btn" aria-label="Siguiente componente" title="Siguiente">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
       </div>
     </div>
 
@@ -386,35 +414,35 @@
 
       <div class="drawer-section-label">Saltar a Componente</div>
       <div class="drawer-components-grid">
-        <a href="#comp-ecommerce" class="drawer-comp-card">
+        <a href="#components" class="drawer-comp-card" data-comp="ecommerce">
           <i class="fa-solid fa-store"></i>
           <span>E-commerce</span>
         </a>
-        <a href="#comp-dashboard" class="drawer-comp-card">
+        <a href="#components" class="drawer-comp-card" data-comp="dashboard">
           <i class="fa-solid fa-chart-line"></i>
           <span>Dashboard</span>
         </a>
-        <a href="#comp-booking" class="drawer-comp-card">
+        <a href="#components" class="drawer-comp-card" data-comp="booking">
           <i class="fa-regular fa-calendar-check"></i>
           <span>Reservas</span>
         </a>
-        <a href="#comp-galleries" class="drawer-comp-card">
+        <a href="#components" class="drawer-comp-card" data-comp="galleries">
           <i class="fa-solid fa-images"></i>
           <span>Galerías</span>
         </a>
-        <a href="#comp-forms" class="drawer-comp-card">
+        <a href="#components" class="drawer-comp-card" data-comp="forms">
           <i class="fa-solid fa-file-lines"></i>
           <span>Formularios</span>
         </a>
-        <a href="#comp-advanced-comps" class="drawer-comp-card">
+        <a href="#components" class="drawer-comp-card" data-comp="advanced-comps">
           <i class="fa-solid fa-wand-magic-sparkles"></i>
           <span>Kanban</span>
         </a>
-        <a href="#comp-api" class="drawer-comp-card">
+        <a href="#components" class="drawer-comp-card" data-comp="api">
           <i class="fa-solid fa-satellite-dish"></i>
           <span>API REST</span>
         </a>
-        <a href="#comp-mapa" class="drawer-comp-card">
+        <a href="#components" class="drawer-comp-card" data-comp="mapa">
           <i class="fa-solid fa-map-location-dot"></i>
           <span>Mapa</span>
         </a>
