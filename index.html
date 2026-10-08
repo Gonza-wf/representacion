@@ -235,6 +235,23 @@
 
     <!-- Futuristic Component Tabs Dock -->
     <div class="showcase-tabs-nav">
+      <!-- Mobile top row: active component name + stepper -->
+      <div class="showcase-mobile-topbar">
+        <span class="mobile-comp-name" id="mobile-comp-name">
+          <i class="fa-solid fa-store"></i>
+          <span id="mobile-comp-label">E-commerce</span>
+        </span>
+        <div class="showcase-stepper showcase-stepper--mobile">
+          <button id="showcase-prev-btn-m" class="stepper-arrow-btn" aria-label="Componente anterior">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <span class="stepper-counter" id="showcase-tab-counter-m">1 / 8</span>
+          <button id="showcase-next-btn-m" class="stepper-arrow-btn" aria-label="Siguiente componente">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+
       <div class="showcase-tabs-track" id="showcase-tabs-track" role="tablist" aria-label="Demos Interactivas">
         <!-- Sliding Pill Indicator -->
         <div class="showcase-tab-pill" id="showcase-tab-pill" aria-hidden="true"></div>
@@ -246,32 +263,32 @@
         </div>
 
         <button class="showcase-tab-btn active" data-comp="ecommerce" role="tab" aria-selected="true">
-          <i class="fa-solid fa-store"></i> <span>E-commerce</span>
+          <i class="fa-solid fa-store"></i> <span class="tab-label">E-commerce</span>
         </button>
         <button class="showcase-tab-btn" data-comp="dashboard" role="tab" aria-selected="false">
-          <i class="fa-solid fa-chart-line"></i> <span>Dashboard</span>
+          <i class="fa-solid fa-chart-line"></i> <span class="tab-label">Dashboard</span>
         </button>
         <button class="showcase-tab-btn" data-comp="booking" role="tab" aria-selected="false">
-          <i class="fa-regular fa-calendar-check"></i> <span>Reservas</span>
+          <i class="fa-regular fa-calendar-check"></i> <span class="tab-label">Reservas</span>
         </button>
         <button class="showcase-tab-btn" data-comp="galleries" role="tab" aria-selected="false">
-          <i class="fa-solid fa-images"></i> <span>Galerías</span>
+          <i class="fa-solid fa-images"></i> <span class="tab-label">Galerías</span>
         </button>
         <button class="showcase-tab-btn" data-comp="forms" role="tab" aria-selected="false">
-          <i class="fa-solid fa-file-lines"></i> <span>Formularios</span>
+          <i class="fa-solid fa-file-lines"></i> <span class="tab-label">Formularios</span>
         </button>
         <button class="showcase-tab-btn" data-comp="advanced-comps" role="tab" aria-selected="false">
-          <i class="fa-solid fa-wand-magic-sparkles"></i> <span>Kanban</span>
+          <i class="fa-solid fa-wand-magic-sparkles"></i> <span class="tab-label">Kanban</span>
         </button>
         <button class="showcase-tab-btn" data-comp="api" role="tab" aria-selected="false">
-          <i class="fa-solid fa-satellite-dish"></i> <span>API REST</span>
+          <i class="fa-solid fa-satellite-dish"></i> <span class="tab-label">API REST</span>
         </button>
         <button class="showcase-tab-btn" data-comp="mapa" role="tab" aria-selected="false">
-          <i class="fa-solid fa-map-location-dot"></i> <span>Mapa</span>
+          <i class="fa-solid fa-map-location-dot"></i> <span class="tab-label">Mapa</span>
         </button>
       </div>
 
-      <div class="showcase-stepper">
+      <div class="showcase-stepper showcase-stepper--desktop">
         <button id="showcase-prev-btn" class="stepper-arrow-btn" aria-label="Componente anterior" title="Anterior [←]">
           <i class="fa-solid fa-chevron-left"></i>
         </button>
@@ -281,6 +298,7 @@
         </button>
       </div>
     </div>
+
 
     <!-- Futuristic Device Mockup Shell -->
     <div class="showcase-device-shell device-desktop" id="device-shell">

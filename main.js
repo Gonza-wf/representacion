@@ -246,6 +246,25 @@ export function switchComponent(targetId, shouldScroll = false) {
     counter.classList.add('counter-pop');
   }
 
+  // Sync mobile counter
+  const counterM = document.getElementById('showcase-tab-counter-m');
+  if (counterM) {
+    counterM.textContent = `${currentCompIndex + 1} / ${COMPONENT_ORDER.length}`;
+    counterM.classList.remove('counter-pop');
+    void counterM.offsetWidth;
+    counterM.classList.add('counter-pop');
+  }
+
+  // Update mobile top-bar: icon + label from active button
+  if (activeTabBtn) {
+    const labelEl = document.getElementById('mobile-comp-label');
+    const iconEl  = document.querySelector('#mobile-comp-name i');
+    const btnIcon = activeTabBtn.querySelector('i');
+    const btnLabel = activeTabBtn.querySelector('.tab-label');
+    if (labelEl && btnLabel) labelEl.textContent = btnLabel.textContent;
+    if (iconEl && btnIcon) iconEl.className = btnIcon.className;
+  }
+
   // Trigger resize event so Chart.js and Leaflet re-render crisp
   window.dispatchEvent(new Event('resize'));
 
@@ -285,6 +304,22 @@ function initShowcaseTabs() {
 
   if (nextBtn) {
     nextBtn.addEventListener('click', () => {
+      const nextIndex = (currentCompIndex + 1) % COMPONENT_ORDER.length;
+      switchComponent(COMPONENT_ORDER[nextIndex], true);
+    });
+  }
+
+  // Mobile duplicate prev/next buttons
+  const prevBtnM = document.getElementById('showcase-prev-btn-m');
+  const nextBtnM = document.getElementById('showcase-next-btn-m');
+  if (prevBtnM) {
+    prevBtnM.addEventListener('click', () => {
+      const prevIndex = (currentCompIndex - 1 + COMPONENT_ORDER.length) % COMPONENT_ORDER.length;
+      switchComponent(COMPONENT_ORDER[prevIndex], true);
+    });
+  }
+  if (nextBtnM) {
+    nextBtnM.addEventListener('click', () => {
       const nextIndex = (currentCompIndex + 1) % COMPONENT_ORDER.length;
       switchComponent(COMPONENT_ORDER[nextIndex], true);
     });
