@@ -177,6 +177,7 @@ const css = `
   .bk-success-detail p { margin-bottom:0.4rem; color:var(--text-secondary); }
   .bk-success-detail p:last-child { margin-bottom:0; }
   .bk-success-detail strong { color:var(--text-primary); }
+  .bk-summary-mini i, .bk-success-detail i { color:var(--primary-color); margin-right:0.25rem; }
   .bk-wa-msg { color:#25d366; font-weight:600; margin-bottom:1rem; }
   .bk-wa-msg i { margin-right:0.3rem; }
 </style>
@@ -385,7 +386,9 @@ function onMount(container) {
       var b1 = document.createElement('strong');
       b1.textContent = 'Servicio: ';
       p1.appendChild(b1);
-      p1.appendChild(document.createTextNode(selectedService.icon + ' ' + selectedService.name + ' — $' + selectedService.price.toLocaleString('es-AR')));
+      var span1 = document.createElement('span');
+      span1.innerHTML = selectedService.icon + ' ' + selectedService.name + ' — $' + selectedService.price.toLocaleString('es-AR');
+      p1.appendChild(span1);
       mini.appendChild(p1);
     }
     if (selectedDayStr) {
@@ -448,7 +451,13 @@ function onMount(container) {
       var b = document.createElement('strong');
       b.textContent = row[0] + ': ';
       p.appendChild(b);
-      p.appendChild(document.createTextNode(row[1]));
+      if (row[0] === 'Servicio') {
+        var span = document.createElement('span');
+        span.innerHTML = row[1];
+        p.appendChild(span);
+      } else {
+        p.appendChild(document.createTextNode(row[1]));
+      }
       detail.appendChild(p);
     });
   });
