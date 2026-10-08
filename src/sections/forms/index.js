@@ -294,13 +294,44 @@ rPass.addEventListener('input', () => {
 
 const explanation = `
 <h3>Autenticación Completa + Formulario Multi-Step</h3>
-<ul>
-  <li><strong>Toggle Login/Registro:</strong> Transición suave entre dos formularios en la misma tarjeta.</li>
-  <li><strong>Validación en tiempo real:</strong> Cada campo se valida mientras el usuario escribe: borde verde = válido, rojo = inválido.</li>
-  <li><strong>Barra de fortaleza de contraseña:</strong> Evalúa longitud, mayúsculas, números y caracteres especiales.</li>
-  <li><strong>Multi-Step (3 pasos):</strong> Progreso visual, validación antes de avanzar, resumen en el paso final.</li>
-</ul>
+
+<div class="exp-section">
+  <h4><i class="fa-solid fa-bullseye"></i> Para qué sirve</h4>
+  <p>Este componente cubre dos flujos de formulario críticos en cualquier aplicación web: el sistema de autenticación (login y registro con validaciones en vivo) y la captura progresiva de datos mediante un formulario en múltiples pasos. Reduce el abandono de formularios largos al dividirlos en etapas manejables.</p>
+  <div class="exp-industries">
+    <span class="exp-industry-badge"><i class="fa-solid fa-user-lock"></i> Apps SaaS & Membresías</span>
+    <span class="exp-industry-badge"><i class="fa-solid fa-graduation-cap"></i> Ed-Tech & Cursos Online</span>
+    <span class="exp-industry-badge"><i class="fa-solid fa-briefcase"></i> Onboarding B2B</span>
+    <span class="exp-industry-badge"><i class="fa-solid fa-handshake"></i> CRM & Leads</span>
+  </div>
+</div>
+
+<div class="exp-section">
+  <h4><i class="fa-solid fa-gears"></i> Cómo funciona</h4>
+  <ul>
+    <li><strong>Toggle Login/Registro:</strong> Ambos formularios están en el DOM; se muestran/ocultan con clases CSS. La transición suave se logra con <code>opacity</code> y <code>transform: translateY</code>.</li>
+    <li><strong>Validación en tiempo real:</strong> Cada <code>input</code> tiene un listener <code>input</code> que evalúa su valor contra una expresión regular o regla de negocio y aplica clase <code>valid</code> o <code>invalid</code>.</li>
+    <li><strong>Barra de fortaleza:</strong> La contraseña se puntúa sumando: longitud ≥ 8 (+1), mayúscula (+1), número (+1), carácter especial (+1). El ancho y color de la barra reflejan la puntuación.</li>
+    <li><strong>Multi-Step:</strong> Un <code>currentStep</code> controla qué fieldset es visible. Antes de avanzar se validan sólo los campos del paso actual. El último paso muestra un resumen con todos los datos ingresados.</li>
+    <li><strong>Pantalla de éxito:</strong> Animación de checkmark CSS sin SVG externo; regresa al formulario inicial tras 3 segundos.</li>
+  </ul>
+  <div class="exp-tech-tags">
+    <span class="exp-tech-tag">Regex Validation</span>
+    <span class="exp-tech-tag">Password Strength</span>
+    <span class="exp-tech-tag">Multi-Step UX</span>
+    <span class="exp-tech-tag">CSS Transitions</span>
+    <span class="exp-tech-tag">Show/Hide Toggle</span>
+  </div>
+</div>
+
+<div class="exp-section">
+  <h4><i class="fa-solid fa-lightbulb"></i> Cuándo recomendaría usarlo</h4>
+  <div class="exp-recommend-box">
+    Recomiendo este componente en cualquier proyecto que requiera <strong>registro de usuarios o captación de leads calificados</strong>. El formulario multi-step es especialmente efectivo para cotizadores, formularios de onboarding de clientes o solicitudes de servicio donde pedir todos los datos a la vez desalentaría al usuario. Las validaciones en tiempo real reducen drásticamente los errores en el envío y mejoran la experiencia percibida de la aplicación.
+  </div>
+</div>
 `;
+
 
 function onMount(container) {
   var toastEl = container.querySelector('#form-toast');

@@ -319,12 +319,42 @@ function showToast(msg, type = 'success') {
 
 const explanation = `
 <h3>Componentes Avanzados de UI</h3>
-<ul>
-  <li><strong>Kanban Drag &amp; Drop:</strong> Usando la librería <code>SortableJS</code>, que permite arrastrar tarjetas entre columnas compartiendo el mismo grupo. Las insignias numéricas se actualizan automáticamente al soltar. Esto demuestra capacidad de integrar librerías especializadas correctamente.</li>
-  <li><strong>Toggle de Facturación:</strong> El interruptor visual (toggle switch en CSS puro) activa un evento <code>change</code> que actualiza todos los precios en el DOM leyendo atributos <code>data-m</code> y <code>data-a</code>. Sin recarga, sin librerías.</li>
-  <li><strong>Sistema de Toasts/Notificaciones:</strong> Notificaciones temporales no intrusivas que aparecen en la esquina inferior derecha. Se crean dinámicamente, tienen animaciones de entrada y salida CSS, y se autodestruyen luego de 3 segundos limpiando el DOM.</li>
-</ul>
+
+<div class="exp-section">
+  <h4><i class="fa-solid fa-bullseye"></i> Para qué sirve</h4>
+  <p>Tres patrones de UI de nivel profesional que aparecen en casi todos los proyectos de gestión: un tablero Kanban para organizar tareas visualmente, un sistema de precios con toggle mensual/anual que incentiva la conversión al plan anual, y un sistema de notificaciones toast no intrusivo para feedback de acciones.</p>
+  <div class="exp-industries">
+    <span class="exp-industry-badge"><i class="fa-solid fa-list-check"></i> Project Management</span>
+    <span class="exp-industry-badge"><i class="fa-solid fa-tag"></i> SaaS & Pricing Pages</span>
+    <span class="exp-industry-badge"><i class="fa-solid fa-bell"></i> Cualquier App Web</span>
+    <span class="exp-industry-badge"><i class="fa-solid fa-users-gear"></i> Herramientas de Equipo</span>
+  </div>
+</div>
+
+<div class="exp-section">
+  <h4><i class="fa-solid fa-gears"></i> Cómo funciona</h4>
+  <ul>
+    <li><strong>Kanban Drag & Drop:</strong> Utiliza la librería <code>SortableJS</code> con <code>group: 'kanban'</code> para compartir elementos entre columnas. El evento <code>onEnd</code> de cada instancia llama a <code>updateCounts()</code> que recuenta los <code>.k-item</code> y actualiza los badges.</li>
+    <li><strong>Toggle de Facturación:</strong> Un <code>&lt;input type="checkbox"&gt;</code> estilizado como switch CSS dispara un evento <code>change</code>. El handler recorre todos los elementos con <code>data-m</code> (mensual) y <code>data-a</code> (anual) y actualiza su <code>textContent</code> dinámicamente sin recargar nada.</li>
+    <li><strong>Sistema de Toasts:</strong> <code>createElement('div')</code> con clase <code>toast</code>, insertado en <code>#toast-container</code> (portal en <code>body</code>). La animación de entrada y salida usa transiciones CSS + <code>setTimeout</code> de 3s para auto-destruir el elemento del DOM.</li>
+  </ul>
+  <div class="exp-tech-tags">
+    <span class="exp-tech-tag">SortableJS</span>
+    <span class="exp-tech-tag">Drag & Drop</span>
+    <span class="exp-tech-tag">CSS Toggle Switch</span>
+    <span class="exp-tech-tag">Toast Notifications</span>
+    <span class="exp-tech-tag">Data Attributes</span>
+  </div>
+</div>
+
+<div class="exp-section">
+  <h4><i class="fa-solid fa-lightbulb"></i> Cuándo recomendaría usarlo</h4>
+  <div class="exp-recommend-box">
+    El <strong>Kanban</strong> es indispensable en cualquier herramienta interna de gestión de tareas, pipeline de ventas o seguimiento de proyectos. El <strong>toggle de precios</strong> es un must-have para landing pages de SaaS con planes; el descuento visual al activar "Anual" aumenta significativamente las conversiones. Los <strong>toasts</strong> mejoran la percepción de calidad en cualquier aplicación porque dan feedback inmediato a cada acción del usuario sin interrumpir su flujo de trabajo.
+  </div>
+</div>
 `;
+
 
 function updateCounts(container) {
   var colIds = ['kb-todo', 'kb-prog', 'kb-done'];

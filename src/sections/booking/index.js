@@ -214,16 +214,45 @@ TIME_SLOTS.forEach(t => {
 `;
 
 const explanation = `
-<h3>Sistema de Reservas de 4 Pasos</h3>
-<p>Flujo completo para peluquerías, consultorios, talleres y cualquier negocio de turnos:</p>
-<ul>
-  <li><strong>Paso 1 — Servicio:</strong> Grid visual con icono, nombre, duración y precio. Al seleccionar avanza automáticamente.</li>
-  <li><strong>Paso 2 — Día:</strong> Genera los próximos 8 días hábiles con <code>Date</code> nativo, saltea los domingos.</li>
-  <li><strong>Paso 3 — Horario:</strong> Franjas de 30 min. Algunas ocupadas simulando carga desde una API.</li>
-  <li><strong>Paso 4 — Datos:</strong> Mini-resumen del turno seleccionado + campos de nombre y teléfono. Botón de confirmación habilitado solo con todo completo.</li>
-  <li><strong>Pantalla de éxito:</strong> Detalle completo + mensaje de confirmación por WhatsApp.</li>
-</ul>
+<h3>Sistema de Reservas en 4 Pasos</h3>
+
+<div class="exp-section">
+  <h4><i class="fa-solid fa-bullseye"></i> Para qué sirve</h4>
+  <p>Automatiza la toma de turnos y reservas de cualquier negocio que trabaje con horarios: peluquerías, consultorios, estudios de yoga, talleres mecánicos, dentistas y más. El cliente elige servicio, día, horario y deja sus datos sin necesidad de llamar o enviar mensajes.</p>
+  <div class="exp-industries">
+    <span class="exp-industry-badge"><i class="fa-solid fa-scissors"></i> Peluquerías & Estética</span>
+    <span class="exp-industry-badge"><i class="fa-solid fa-stethoscope"></i> Salud & Consultorios</span>
+    <span class="exp-industry-badge"><i class="fa-solid fa-dumbbell"></i> Fitness & Bienestar</span>
+    <span class="exp-industry-badge"><i class="fa-solid fa-wrench"></i> Talleres & Servicios</span>
+  </div>
+</div>
+
+<div class="exp-section">
+  <h4><i class="fa-solid fa-gears"></i> Cómo funciona</h4>
+  <ul>
+    <li><strong>Stepper de 4 pasos:</strong> Un índice <code>currentStep</code> controla qué panel se muestra; los pasos completados se colorean en verde en el indicador superior.</li>
+    <li><strong>Generación de días hábiles:</strong> Se calculan los próximos 8 días a partir de hoy usando el objeto nativo <code>Date</code>, salteando domingos automáticamente.</li>
+    <li><strong>Franjas horarias:</strong> Se generan de 09:00 a 17:30 en intervalos de 30 minutos. Un subconjunto aleatorio de slots se marca como ocupado simulando carga desde backend.</li>
+    <li><strong>Validación de avance:</strong> El botón "Siguiente" permanece deshabilitado hasta que el campo del paso actual tiene un valor válido, evitando datos incompletos.</li>
+    <li><strong>Pantalla de éxito:</strong> Muestra un resumen completo del turno y un CTA de confirmación por WhatsApp.</li>
+  </ul>
+  <div class="exp-tech-tags">
+    <span class="exp-tech-tag">Vanilla JS</span>
+    <span class="exp-tech-tag">Date API</span>
+    <span class="exp-tech-tag">Multi-step UX</span>
+    <span class="exp-tech-tag">Form Validation</span>
+    <span class="exp-tech-tag">State Machine</span>
+  </div>
+</div>
+
+<div class="exp-section">
+  <h4><i class="fa-solid fa-lightbulb"></i> Cuándo recomendaría usarlo</h4>
+  <div class="exp-recommend-box">
+    Ideal para cualquier negocio que hoy gestiona turnos por WhatsApp o teléfono y quiere <strong>reducir el tiempo de atención administrativa</strong>. Con una integración a Google Calendar API o un backend simple (Firebase/Supabase), este sistema puede reemplazar herramientas de pago como Calendly o SimplyBook. Especialmente rentable para consultorios médicos y peluquerías con alta rotación de clientes.
+  </div>
+</div>
 `;
+
 
 function onMount(container) {
   var currentStep = 1;

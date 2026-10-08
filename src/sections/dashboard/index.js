@@ -245,13 +245,44 @@ filterBtn.addEventListener('click', () => renderStock(filterStock(activeFilter))
 
 const explanation = `
 <h3>Dashboard Empresarial Completo</h3>
-<ul>
-  <li><strong>4 KPIs animados:</strong> Usuarios activos, ingresos, órdenes y stock crítico con badges de tendencia.</li>
-  <li><strong>Gráfico de ventas:</strong> Chart.js con ResizeObserver para adaptarse al contenedor.</li>
-  <li><strong>Tabla de pedidos:</strong> Ordenable por columna, paginada de 4 en 4.</li>
-  <li><strong>Panel de Stock en tiempo real:</strong> Barra de progreso por producto, badges de estado (Crítico/Normal/Excedente) y botón de reposición instantánea.</li>
-</ul>
+
+<div class="exp-section">
+  <h4><i class="fa-solid fa-bullseye"></i> Para qué sirve</h4>
+  <p>Un panel de control centralizado que permite visualizar el estado del negocio en tiempo real: métricas clave (KPIs), evolución de ventas, gestión de pedidos y control de inventario. Elimina la necesidad de navegar entre múltiples pantallas para obtener una vista integral de la operación.</p>
+  <div class="exp-industries">
+    <span class="exp-industry-badge"><i class="fa-solid fa-warehouse"></i> E-commerce & Retail</span>
+    <span class="exp-industry-badge"><i class="fa-solid fa-chart-pie"></i> SaaS & Analytics</span>
+    <span class="exp-industry-badge"><i class="fa-solid fa-building"></i> Administración Interna</span>
+    <span class="exp-industry-badge"><i class="fa-solid fa-hospital"></i> Salud & Clínicas</span>
+  </div>
+</div>
+
+<div class="exp-section">
+  <h4><i class="fa-solid fa-gears"></i> Cómo funciona</h4>
+  <ul>
+    <li><strong>KPI Cards:</strong> Renderizadas desde el array <code>KPI_DATA</code>. Cada card muestra valor, tendencia porcentual y dirección (▲/▼) codificada por color.</li>
+    <li><strong>Gráfico Chart.js:</strong> Usa <code>responsive: true</code> + <code>ResizeObserver</code> para llamar a <code>chart.resize()</code> cuando el contenedor cambia de tamaño dentro del viewport simulado.</li>
+    <li><strong>Tabla ordenable:</strong> Al hacer clic en un encabezado, se ordena el array de órdenes ascendente/descendente y se re-renderiza con <code>createElement</code>. Paginación de 4 registros por página.</li>
+    <li><strong>Panel de Stock:</strong> Barras de progreso CSS (<code>width</code> inline) con lógica de estado: <code>stock/maxStock</code> determina Crítico, Normal o Excedente. El botón "Reponer" actualiza el valor en el array y re-renderiza.</li>
+    <li><strong>Filtros de inventario:</strong> Los botones Todos/Crítico/Normal/Excedente filtran el array antes de renderizar las filas.</li>
+  </ul>
+  <div class="exp-tech-tags">
+    <span class="exp-tech-tag">Chart.js</span>
+    <span class="exp-tech-tag">ResizeObserver</span>
+    <span class="exp-tech-tag">Sortable Tables</span>
+    <span class="exp-tech-tag">CSS Progress Bars</span>
+    <span class="exp-tech-tag">Pagination</span>
+  </div>
+</div>
+
+<div class="exp-section">
+  <h4><i class="fa-solid fa-lightbulb"></i> Cuándo recomendaría usarlo</h4>
+  <div class="exp-recommend-box">
+    Este panel es el punto de partida ideal para cualquier sistema de gestión interna. Recomiendo ofrecerlo cuando el cliente tiene un equipo administrativo que hoy usa hojas de cálculo dispersas y necesita <strong>una vista unificada y en tiempo real</strong>. Es especialmente valioso para pymes de e-commerce, clínicas con turnos y stock de insumos, o cualquier negocio con múltiples KPIs críticos. Puede conectarse fácilmente a una API REST o Firebase como fuente de datos real.
+  </div>
+</div>
 `;
+
 
 // helpers — note: these are top-level vars, not inside onMount, so string concat rule is relaxed
 var KPI_DATA = [

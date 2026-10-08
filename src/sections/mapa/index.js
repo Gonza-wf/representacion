@@ -195,14 +195,47 @@ lockBtn.addEventListener('click', () => {
 `;
 
 const explanation = `
-<h3>Mapa Interactivo con Protección Táctil para Móviles</h3>
-<ul>
-  <li><strong>Sin bloqueo de scroll en móviles:</strong> Incluye un protector táctil para que el usuario pueda deslizar la página naturalmente sin que el mapa capture su dedo. Al tocar "Activar", puede mover y hacer zoom libremente.</li>
-  <li><strong>Sucursales en carrusel horizontal móvil:</strong> En pantallas táctiles, la lista de sucursales se convierte en una tira horizontal con desplazamiento táctil independiente, evitando que bloquee el scroll vertical de la página.</li>
-  <li><strong>OpenStreetMap & Modo Oscuro:</strong> Cambio instantáneo entre mapa estándar y mapa oscuro CartoDB.</li>
-  <li><strong>Interacción fluida:</strong> Al tocar cualquier sucursal, el mapa vuela suavemente (<code>flyTo</code>) hacia ella y abre su popup descriptivo.</li>
-</ul>
+<h3>Mapa Interactivo con Leaflet</h3>
+
+<div class="exp-section">
+  <h4><i class="fa-solid fa-bullseye"></i> Para qué sirve</h4>
+  <p>Muestra la ubicación geográfica del negocio o sus sucursales de forma interactiva, permitiendo al usuario explorar el mapa, ver detalles de cada punto y calcular su cercanía. Transforma una simple dirección de texto en una experiencia visual que genera confianza y reduce las consultas de "¿cómo llego?".</p>
+  <div class="exp-industries">
+    <span class="exp-industry-badge"><i class="fa-solid fa-store"></i> Cadenas de Locales</span>
+    <span class="exp-industry-badge"><i class="fa-solid fa-truck"></i> Logística &amp; Delivery</span>
+    <span class="exp-industry-badge"><i class="fa-solid fa-utensils"></i> Gastronomía</span>
+    <span class="exp-industry-badge"><i class="fa-solid fa-building"></i> Inmobiliarias</span>
+    <span class="exp-industry-badge"><i class="fa-solid fa-map-pin"></i> Turismo &amp; Eventos</span>
+  </div>
+</div>
+
+<div class="exp-section">
+  <h4><i class="fa-solid fa-gears"></i> Cómo funciona</h4>
+  <ul>
+    <li><strong>Leaflet.js:</strong> Librería de mapas open-source (~40KB) que usa OpenStreetMap como proveedor de tiles gratuito. Se inicializa sobre un <code>&lt;div&gt;</code> con altura explícita después del montaje del DOM.</li>
+    <li><strong>Marcadores personalizados:</strong> <code>L.circleMarker</code> con radio, color y clase CSS personalizada. El marcador activo cambia a color verde cuando el usuario selecciona una sucursal del panel.</li>
+    <li><strong>flyTo con animación:</strong> Al seleccionar una sucursal, el mapa viaja suavemente con <code>map.flyTo([lat, lng], zoom)</code> y abre el popup automáticamente.</li>
+    <li><strong>Cambio de capa:</strong> Toggle entre tiles estándar (OpenStreetMap) y oscuros (CartoDB Dark) usando <code>tileLayer.remove()</code> + <code>addTo(map)</code>.</li>
+    <li><strong>Protector táctil móvil:</strong> En dispositivos táctiles, el mapa tiene dragging desactivado por defecto para no interferir con el scroll de la página. Un botón "Activar" habilita la interacción completa.</li>
+    <li><strong>Círculo de cobertura:</strong> <code>L.circle(center, {radius: 3000})</code> dibuja el área de servicio con borde punteado y relleno semitransparente.</li>
+  </ul>
+  <div class="exp-tech-tags">
+    <span class="exp-tech-tag">Leaflet.js</span>
+    <span class="exp-tech-tag">OpenStreetMap</span>
+    <span class="exp-tech-tag">CartoDB Tiles</span>
+    <span class="exp-tech-tag">flyTo Animation</span>
+    <span class="exp-tech-tag">Touch Guard</span>
+  </div>
+</div>
+
+<div class="exp-section">
+  <h4><i class="fa-solid fa-lightbulb"></i> Cuándo recomendaría usarlo</h4>
+  <div class="exp-recommend-box">
+    Recomiendo el mapa interactivo en cualquier negocio con presencia física, especialmente cuando tiene <strong>múltiples sucursales</strong>. Es mucho más efectivo que un simple enlace a Google Maps porque el usuario puede explorar todas las ubicaciones sin salir del sitio. Para inmobiliarias, visualizar propiedades con coordenadas en un mapa es un diferencial competitivo clave. La solución es completamente gratuita (sin API Key de Google) gracias a OpenStreetMap y Leaflet.
+  </div>
+</div>
 `;
+
 
 function onMount(container) {
   var mapEl = container.querySelector('#map-container');

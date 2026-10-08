@@ -225,15 +225,46 @@ filterInput.addEventListener('input', () => {
 `;
 
 const explanation = `
-<h3>API Simulada — Fetch & Async en Acción</h3>
-<ul>
-  <li><strong>4 endpoints:</strong> GET Users, GET Posts, POST simulado (muestra request + response al estilo Postman), y 404 con manejo de error.</li>
-  <li><strong>Estado de carga:</strong> Skeleton animado mientras espera, luego resultados en tarjetas.</li>
-  <li><strong>Latencia artificial:</strong> 600-1300ms de delay para simular red real.</li>
-  <li><strong>Filtro en tiempo real:</strong> Input que filtra los resultados ya cargados sin nueva petición.</li>
-  <li><strong>JSON Raw coloreado:</strong> Panel expandible con syntax highlighting básico (keys azules, strings verdes, números naranjas).</li>
-</ul>
+<h3>API Simulada — Fetch &amp; Async en Acción</h3>
+
+<div class="exp-section">
+  <h4><i class="fa-solid fa-bullseye"></i> Para qué sirve</h4>
+  <p>Demuestra al cliente cómo su sitio puede conectarse a servicios externos en tiempo real: cargar datos de usuarios, publicaciones, productos o cualquier recurso desde una API REST. Visualiza el ciclo completo request → loading → response → render de forma interactiva, incluyendo el manejo de errores.</p>
+  <div class="exp-industries">
+    <span class="exp-industry-badge"><i class="fa-solid fa-code"></i> Desarrollo Web &amp; Apps</span>
+    <span class="exp-industry-badge"><i class="fa-solid fa-database"></i> Integración de Datos</span>
+    <span class="exp-industry-badge"><i class="fa-solid fa-plug"></i> Conectores &amp; Webhooks</span>
+    <span class="exp-industry-badge"><i class="fa-solid fa-chart-bar"></i> Dashboards con API</span>
+  </div>
+</div>
+
+<div class="exp-section">
+  <h4><i class="fa-solid fa-gears"></i> Cómo funciona</h4>
+  <ul>
+    <li><strong>Fetch real:</strong> Los endpoints GET Users y GET Posts hacen peticiones reales a <code>jsonplaceholder.typicode.com</code> con <code>async/await</code> y captura de errores con <code>try/catch</code>.</li>
+    <li><strong>Latencia artificial:</strong> Un <code>setTimeout</code> de 800–1500ms se aplica antes de mostrar los resultados para simular la latencia de red real y hacer visible el estado de carga.</li>
+    <li><strong>Skeleton loading:</strong> Mientras espera la respuesta, se muestran 3 bloques animados con CSS <code>@keyframes shimmer</code> que imitan la estructura de las tarjetas resultantes.</li>
+    <li><strong>Modo Postman:</strong> El endpoint POST simula una request con body JSON y muestra ambos paneles (request / response) lado a lado, igual que una herramienta de desarrollo real.</li>
+    <li><strong>Filtro en tiempo real:</strong> Una vez cargados los datos, el input de búsqueda filtra el array en memoria y re-renderiza sin hacer una nueva petición al servidor.</li>
+    <li><strong>Coloreado de JSON:</strong> El panel Raw usa <code>String.replace</code> con regex para envolver keys, strings y números en <code>&lt;span&gt;</code> con clases CSS de color.</li>
+  </ul>
+  <div class="exp-tech-tags">
+    <span class="exp-tech-tag">Fetch API</span>
+    <span class="exp-tech-tag">Async/Await</span>
+    <span class="exp-tech-tag">Skeleton UI</span>
+    <span class="exp-tech-tag">Error Handling</span>
+    <span class="exp-tech-tag">JSON Highlight</span>
+  </div>
+</div>
+
+<div class="exp-section">
+  <h4><i class="fa-solid fa-lightbulb"></i> Cuándo recomendaría usarlo</h4>
+  <div class="exp-recommend-box">
+    Recomiendo este componente como demostración técnica clave cuando el cliente no entiende qué es una API o cómo beneficia a su negocio. Verlo en acción —datos reales cargándose en tiempo real— es más persuasivo que cualquier explicación. En proyectos reales, esta arquitectura se usa para <strong>conectar el frontend con cualquier backend</strong>: stock desde ERP, pedidos desde WooCommerce, clima desde OpenWeather, o clientes desde HubSpot.
+  </div>
+</div>
 `;
+
 
 function onMount(container) {
   var allData = [];

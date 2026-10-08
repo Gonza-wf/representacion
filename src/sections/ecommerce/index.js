@@ -302,14 +302,45 @@ modalAddBtn.addEventListener('click', () => {
 
 const explanation = `
 <h3>E-commerce Interactivo Completo</h3>
-<ul>
-  <li><strong>Modal de producto:</strong> Click en tarjeta → modal fullscreen con imagen grande, descripción detallada, selector de cantidad y botón de agregar.</li>
-  <li><strong>Carrito lateral:</strong> Panel deslizable con gestión completa de items, incremento/decremento y total dinámico.</li>
-  <li><strong>Filtros en tiempo real:</strong> Por categoría + precio máximo con slider.</li>
-  <li><strong>Favoritos:</strong> Toggle por producto con contador.</li>
-  <li><strong>Buscador:</strong> Filtra por nombre en tiempo real.</li>
-</ul>
+
+<div class="exp-section">
+  <h4><i class="fa-solid fa-bullseye"></i> Para qué sirve</h4>
+  <p>Este componente replica el flujo de compra completo de una tienda online: explorar productos, filtrarlos, ver detalles en modal, gestionar el carrito y guardar favoritos. Es la base funcional sobre la que se construye cualquier catálogo o shop de productos digitales o físicos.</p>
+  <p>Ideal para demostrar a un cliente potencial cómo funcionaría su tienda antes de comenzar el desarrollo real.</p>
+  <div class="exp-industries">
+    <span class="exp-industry-badge"><i class="fa-solid fa-shirt"></i> Moda & Indumentaria</span>
+    <span class="exp-industry-badge"><i class="fa-solid fa-mobile-screen"></i> Tecnología</span>
+    <span class="exp-industry-badge"><i class="fa-solid fa-seedling"></i> Alimentos & Naturales</span>
+    <span class="exp-industry-badge"><i class="fa-solid fa-store"></i> Retail General</span>
+  </div>
+</div>
+
+<div class="exp-section">
+  <h4><i class="fa-solid fa-gears"></i> Cómo funciona</h4>
+  <ul>
+    <li><strong>Grid de productos:</strong> Renderizado dinámico desde un array de datos. Cada tarjeta contiene imagen (Unsplash), badge de categoría, rating con estrellas FA y acciones rápidas.</li>
+    <li><strong>Filtros en cascada:</strong> El buscador por nombre, los chips de categoría y el slider de precio máximo se combinan en una sola función de filtrado que recorre el array y muestra/oculta tarjetas.</li>
+    <li><strong>Carrito lateral:</strong> Un objeto <code>cart</code> en memoria almacena <code>{id: qty}</code>. El panel lateral se re-renderiza cada vez que cambia; el badge del ícono se actualiza al instante.</li>
+    <li><strong>Modal de detalle:</strong> Los overlays se mueven al <code>document.body</code> al montar para evitar que queden atrapados en el contenedor del showcase.</li>
+    <li><strong>Favoritos:</strong> Toggle booleano por producto con persistencia en memoria y contador en el header.</li>
+  </ul>
+  <div class="exp-tech-tags">
+    <span class="exp-tech-tag">Vanilla JS</span>
+    <span class="exp-tech-tag">CSS Grid</span>
+    <span class="exp-tech-tag">DOM Events</span>
+    <span class="exp-tech-tag">Filter Logic</span>
+    <span class="exp-tech-tag">State Management</span>
+  </div>
+</div>
+
+<div class="exp-section">
+  <h4><i class="fa-solid fa-lightbulb"></i> Cuándo recomendaría usarlo</h4>
+  <div class="exp-recommend-box">
+    Recomiendo este componente cuando el cliente necesita un catálogo de productos con experiencia de compra fluida y no requiere un backend propio todavía. Es perfecto como <strong>MVP de tienda online</strong>, prototipo de validación de negocio o landing de ventas para productos físicos. Combinado con una integración de WhatsApp o formulario de pedido, puede reemplazar a Tiendanube o WooCommerce para catálogos pequeños y medianos con costos de mantenimiento mínimos.
+  </div>
+</div>
 `;
+
 
 function onMount(container) {
   var cart = {};

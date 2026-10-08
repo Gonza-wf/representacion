@@ -331,13 +331,43 @@ document.addEventListener('keydown', e => {
 
 const explanation = `
 <h3>4 Tipos de Galería e Imagen</h3>
-<ul>
-  <li><strong>Before/After:</strong> Divisor arrastrable con presets de industria. Contraste dramático antes/después.</li>
-  <li><strong>Carrusel automático:</strong> Avanza cada 3s con fade, se pausa al hover. Dots de navegación.</li>
-  <li><strong>Slider manual:</strong> Botones, teclado y swipe táctil. Miniaturas clickeables debajo.</li>
-  <li><strong>Masonry + Lightbox:</strong> Grid con columnas sin altura fija. Click → lightbox fullscreen con navegación.</li>
-</ul>
+
+<div class="exp-section">
+  <h4><i class="fa-solid fa-bullseye"></i> Para qué sirve</h4>
+  <p>Una biblioteca visual completa que cubre los cuatro patrones de galería más demandados en proyectos reales. Desde mostrar transformaciones de producto (before/after) hasta portafolios de fotografía con lightbox fullscreen, pasando por carruseles de presentación y sliders manuales con soporte táctil.</p>
+  <div class="exp-industries">
+    <span class="exp-industry-badge"><i class="fa-solid fa-car"></i> Detailing & Automotriz</span>
+    <span class="exp-industry-badge"><i class="fa-solid fa-camera"></i> Fotografía & Portfolio</span>
+    <span class="exp-industry-badge"><i class="fa-solid fa-hotel"></i> Hotelería & Turismo</span>
+    <span class="exp-industry-badge"><i class="fa-solid fa-paint-roller"></i> Reformas & Construcción</span>
+  </div>
+</div>
+
+<div class="exp-section">
+  <h4><i class="fa-solid fa-gears"></i> Cómo funciona</h4>
+  <ul>
+    <li><strong>Before/After:</strong> Un <code>&lt;input type="range"&gt;</code> mueve un divisor SVG y recorta la imagen "después" usando <code>clip-path</code>. Presets de industria cambian ambas imágenes y sus filtros CSS.</li>
+    <li><strong>Carrusel automático:</strong> <code>setInterval</code> cada 3 segundos avanza el índice activo. <code>mouseenter/mouseleave</code> pausa/reanuda el intervalo. Dots de navegación generados dinámicamente.</li>
+    <li><strong>Slider manual:</strong> <code>transform: translateX(-N * 100%)</code> sobre el track. Swipe táctil con <code>touchstart/touchend</code> y detección de dirección horizontal. <code>flex: 0 0 100%</code> garantiza un slide por vez en Android.</li>
+    <li><strong>Lightbox:</strong> Al clicar en cualquier imagen del masonry, se abre un overlay fullscreen. Las flechas ← → y teclas de teclado navegan entre todas las imágenes del array sin cerrar el lightbox.</li>
+  </ul>
+  <div class="exp-tech-tags">
+    <span class="exp-tech-tag">CSS clip-path</span>
+    <span class="exp-tech-tag">setInterval</span>
+    <span class="exp-tech-tag">Touch Events</span>
+    <span class="exp-tech-tag">CSS Masonry</span>
+    <span class="exp-tech-tag">Keyboard Nav</span>
+  </div>
+</div>
+
+<div class="exp-section">
+  <h4><i class="fa-solid fa-lightbulb"></i> Cuándo recomendaría usarlo</h4>
+  <div class="exp-recommend-box">
+    El slider <strong>Before/After</strong> es un argumento de venta poderoso para cualquier negocio que transforma algo: detailing automotriz, reformas de interiores, tratamientos capilares o edición fotográfica. El <strong>Masonry + Lightbox</strong> es el estándar para portfolios creativos. Recomiendo este módulo cuando el cliente tiene contenido visual de calidad y quiere que su sitio lo luzca, sin depender de plugins pesados de terceros.
+  </div>
+</div>
 `;
+
 
 function onMount(container) {
   // ===== BEFORE / AFTER =====
